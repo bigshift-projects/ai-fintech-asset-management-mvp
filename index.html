@@ -1072,8 +1072,7 @@
 
     /* Inlined 04-ux CSS */
     /* Inline from 04-ux/screen.css */
-    .ux-screen {
-      --screen-height: 900px;
+    :root {
       --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --background: #f6f8fb;
       --foreground: #111827;
@@ -1095,64 +1094,58 @@
       --card-padding: 22px;
     }
 
-    .ux-screen * {
+    * {
       box-sizing: border-box;
     }
 
-    .ux-screen {
+    body {
       margin: 0;
       background: var(--background);
       color: var(--foreground);
       font-family: var(--font-sans);
     }
 
-    .ux-screen button,
-    .ux-screen input {
+    button,
+    input {
       font: inherit;
     }
 
     .ux-screen {
-      width: 100%;
-      height: var(--screen-height);
-      min-height: var(--screen-height);
-      margin: 0;
+      width: min(1180px, 100%);
+      min-height: 720px;
+      margin: 0 auto;
       color: var(--foreground);
       font-family: var(--font-sans);
       position: relative;
     }
 
-    .ux-screen .fin-shell {
-      width: 100%;
-      height: var(--screen-height);
-      margin: 0;
+    .app-shell {
       display: grid;
-      grid-template-columns: 82px minmax(0, 1fr) 280px;
-      grid-template-rows: auto;
-      gap: 12px;
-      min-height: var(--screen-height);
+      grid-template-columns: 92px minmax(0, 1fr) 318px;
+      gap: 18px;
+      min-height: 720px;
       padding: 18px;
-      overflow: visible;
       background: linear-gradient(180deg, #fbfcff 0%, #f0f4f9 100%);
     }
 
-    .ux-screen .fin-side-nav,
-    .ux-screen .fin-panel,
-    .ux-screen .fin-card {
+    .side-nav,
+    .panel,
+    .card {
       border: 1px solid rgba(229, 234, 240, 0.82);
       background: rgba(255, 255, 255, 0.96);
       box-shadow: var(--shadow-card);
       border-radius: var(--card-radius);
     }
 
-    .ux-screen .fin-side-nav {
+    .side-nav {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 16px;
-      padding: 14px 8px;
+      padding: 16px 10px;
     }
 
-    .ux-screen .fin-brand-mark {
+    .brand-mark {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1165,7 +1158,7 @@
       line-height: 1.25;
     }
 
-    .ux-screen .fin-brand-dot {
+    .brand-dot {
       width: 28px;
       height: 28px;
       display: grid;
@@ -1177,19 +1170,19 @@
       font-weight: 900;
     }
 
-    .ux-screen .fin-nav-list {
+    .nav-list {
       display: grid;
       gap: 8px;
       width: 100%;
     }
 
-    .ux-screen .fin-nav-item {
+    .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      min-height: 62px;
+      min-height: 66px;
       padding: 8px 6px;
       border-radius: 20px;
       color: var(--muted);
@@ -1198,16 +1191,16 @@
       text-align: center;
     }
 
-    .ux-screen .fin-nav-item.is-active {
+    .nav-item.is-active {
       color: var(--primary);
       background: var(--primary-weak);
     }
 
-    .ux-screen .fin-nav-dot {
+    .nav-dot {
       display: none;
     }
 
-    .ux-screen .fin-side-foot {
+    .side-foot {
       margin-top: auto;
       padding: 10px 8px;
       border-radius: 18px;
@@ -1216,54 +1209,54 @@
       text-align: center;
     }
 
-    .ux-screen .fin-side-foot strong {
+    .side-foot strong {
       display: block;
       margin-bottom: 4px;
       font-size: 14px;
       white-space: nowrap;
     }
 
-    .ux-screen .fin-side-foot span {
+    .side-foot span {
       display: none;
     }
 
-    .ux-screen .fin-main {
+    .app-main {
       min-width: 0;
       overflow: hidden;
     }
 
-    .ux-screen .fin-topbar {
+    .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 64px;
-      margin-bottom: 12px;
+      min-height: 72px;
+      margin-bottom: 14px;
     }
 
-    .ux-screen .fin-eyebrow {
+    .eyebrow {
       margin: 0 0 4px;
       color: var(--muted);
       font-size: 12px;
       font-weight: 800;
     }
 
-    .ux-screen .fin-screen-title {
+    .screen-title {
       margin: 0;
-      font-size: 24px;
-      line-height: 31px;
+      font-size: 28px;
+      line-height: 36px;
       font-weight: 800;
       letter-spacing: 0;
     }
 
-    .ux-screen .fin-top-actions,
-    .ux-screen .fin-action-row {
+    .top-actions,
+    .action-row {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .ux-screen .fin-button {
+    .button {
       min-height: 44px;
       border: 0;
       border-radius: 14px;
@@ -1276,27 +1269,27 @@
       white-space: nowrap;
     }
 
-    .ux-screen .fin-button--primary {
+    .button--primary {
       background: var(--primary);
       color: #fff;
     }
 
-    .ux-screen .fin-button--dark {
+    .button--dark {
       background: #111827;
       color: #fff;
     }
 
-    .ux-screen .fin-button--ghost {
+    .button--ghost {
       background: transparent;
       color: var(--muted);
     }
 
-    .ux-screen .fin-button--soft {
+    .button--soft {
       background: var(--primary-weak);
       color: var(--primary);
     }
 
-    .ux-screen .fin-icon-button {
+    .icon-button {
       width: 44px;
       height: 44px;
       display: grid;
@@ -1310,44 +1303,44 @@
       font-weight: 900;
     }
 
-    .ux-screen .fin-grid {
+    .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(260px, .82fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
       gap: 16px;
     }
 
-    .ux-screen .fin-stack {
+    .stack {
       display: grid;
       gap: 14px;
     }
 
-    .ux-screen .fin-card {
+    .card {
       padding: var(--card-padding);
     }
 
-    .ux-screen .fin-card--hero {
-      min-height: 286px;
+    .card--hero {
+      min-height: 294px;
       background:
         radial-gradient(circle at 80% 22%, rgba(24, 185, 129, .14), transparent 34%),
         linear-gradient(180deg, #fff 0%, #fbfdff 100%);
     }
 
-    .ux-screen .fin-card-label {
+    .card-label {
       color: var(--muted);
       font-size: 13px;
       font-weight: 800;
     }
 
-    .ux-screen .fin-amount {
+    .amount {
       margin: 8px 0 6px;
-      font-size: clamp(36px, 3.2vw, 48px);
+      font-size: clamp(34px, 3.2vw, 44px);
       line-height: 1.12;
       font-weight: 900;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
 
-    .ux-screen .fin-delta {
+    .delta {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -1360,12 +1353,12 @@
       font-weight: 900;
     }
 
-    .ux-screen .fin-delta--danger {
+    .delta--danger {
       background: var(--danger-weak);
       color: var(--danger);
     }
 
-    .ux-screen .fin-mini-chart {
+    .mini-chart {
       height: 118px;
       margin-top: 22px;
       display: flex;
@@ -1374,42 +1367,42 @@
       border-bottom: 1px solid rgba(229, 234, 240, .9);
     }
 
-    .ux-screen .fin-bar {
+    .bar {
       flex: 1;
       min-width: 18px;
       border-radius: 999px 999px 4px 4px;
       background: linear-gradient(180deg, #20c997 0%, rgba(32, 201, 151, .12) 100%);
     }
 
-    .ux-screen .fin-bar:nth-child(2) { height: 66%; }
-    .ux-screen .fin-bar:nth-child(3) { height: 52%; }
-    .ux-screen .fin-bar:nth-child(4) { height: 82%; }
-    .ux-screen .fin-bar:nth-child(5) { height: 72%; }
-    .ux-screen .fin-bar:nth-child(6) { height: 92%; }
-    .ux-screen .fin-bar:nth-child(7) { height: 64%; }
+    .bar:nth-child(2) { height: 66%; }
+    .bar:nth-child(3) { height: 52%; }
+    .bar:nth-child(4) { height: 82%; }
+    .bar:nth-child(5) { height: 72%; }
+    .bar:nth-child(6) { height: 92%; }
+    .bar:nth-child(7) { height: 64%; }
 
-    .ux-screen .fin-metric-grid {
+    .metric-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
-    .ux-screen .fin-metric-card {
-      min-height: 136px;
+    .metric-card {
+      min-height: 138px;
       padding: 18px;
       border-radius: 24px;
       background: var(--content1);
       border: 1px solid var(--border);
     }
 
-    .ux-screen .fin-metric-value {
+    .metric-value {
       margin-top: 12px;
       font-size: 26px;
       font-weight: 900;
       font-variant-numeric: tabular-nums;
     }
 
-    .ux-screen .fin-section-head {
+    .section-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1417,21 +1410,21 @@
       margin-bottom: 12px;
     }
 
-    .ux-screen .fin-section-title {
+    .section-title {
       margin: 0;
       font-size: 18px;
       line-height: 26px;
       font-weight: 900;
     }
 
-    .ux-screen .fin-tabs {
+    .tabs {
       display: flex;
       gap: 16px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 10px;
     }
 
-    .ux-screen .fin-tab {
+    .tab {
       position: relative;
       padding: 0 0 12px;
       border: 0;
@@ -1442,11 +1435,11 @@
       cursor: pointer;
     }
 
-    .ux-screen .fin-tab.is-active {
+    .tab.is-active {
       color: var(--foreground);
     }
 
-    .ux-screen .fin-tab.is-active::after {
+    .tab.is-active::after {
       content: "";
       position: absolute;
       left: 0;
@@ -1457,19 +1450,19 @@
       background: var(--foreground);
     }
 
-    .ux-screen .fin-asset-list {
+    .asset-list {
       display: grid;
       gap: 6px;
     }
 
-    .ux-screen .fin-asset-row {
+    .asset-row {
       display: grid;
-      grid-template-columns: 40px minmax(0, 1fr) auto;
-      gap: 10px;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 12px;
       align-items: center;
       width: 100%;
-      min-height: 58px;
-      padding: 8px 0;
+      min-height: 64px;
+      padding: 10px 0;
       border: 0;
       border-bottom: 1px solid rgba(229, 234, 240, .72);
       background: transparent;
@@ -1478,26 +1471,26 @@
       cursor: pointer;
     }
 
-    .ux-screen .fin-asset-row:last-child {
+    .asset-row:last-child {
       border-bottom: 0;
     }
 
-    .ux-screen .fin-asset-icon {
-      width: 38px;
-      height: 38px;
+    .asset-icon {
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
+      border-radius: 15px;
       background: #111827;
       color: #fff;
       font-size: 13px;
       font-weight: 900;
     }
 
-    .ux-screen .fin-asset-icon--blue { background: #2f6df6; }
-    .ux-screen .fin-asset-icon--mint { background: #18b981; }
-    .ux-screen .fin-asset-icon--red { background: #ef4444; }
-    .ux-screen .fin-asset-name {
+    .asset-icon--blue { background: #2f6df6; }
+    .asset-icon--mint { background: #18b981; }
+    .asset-icon--red { background: #ef4444; }
+    .asset-name {
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1506,7 +1499,7 @@
       font-weight: 900;
     }
 
-    .ux-screen .fin-asset-meta {
+    .asset-meta {
       display: block;
       margin-top: 3px;
       color: var(--muted);
@@ -1514,43 +1507,43 @@
       font-weight: 700;
     }
 
-    .ux-screen .fin-asset-value {
+    .asset-value {
       text-align: right;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 900;
       font-variant-numeric: tabular-nums;
     }
 
-    .ux-screen .fin-panel {
-      padding: 16px;
+    .panel {
+      padding: 20px;
     }
 
-    .ux-screen .fin-ai-panel {
+    .ai-panel {
       position: sticky;
       top: 18px;
       align-self: start;
       box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03), 0 12px 28px rgba(15, 23, 42, 0.05);
     }
 
-    .ux-screen .fin-ai-orb {
-      width: 42px;
-      height: 42px;
+    .ai-orb {
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
-      border-radius: 16px;
+      border-radius: 18px;
       background: linear-gradient(135deg, #2f6df6, #18b981);
       color: #fff;
       font-weight: 900;
       box-shadow: 0 16px 30px rgba(47, 109, 246, .24);
     }
 
-    .ux-screen .fin-status-card {
+    .status-card {
       display: grid;
       gap: 12px;
       margin-top: 16px;
     }
 
-    .ux-screen .fin-status-line {
+    .status-line {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -1559,11 +1552,11 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .ux-screen .fin-status-line:last-child {
+    .status-line:last-child {
       border-bottom: 0;
     }
 
-    .ux-screen .fin-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -1577,25 +1570,25 @@
       white-space: nowrap;
     }
 
-    .ux-screen .fin-badge--success {
+    .badge--success {
       background: var(--success-weak);
       color: #087f5b;
     }
 
-    .ux-screen .fin-badge--warning {
+    .badge--warning {
       background: var(--warning-weak);
       color: #935f00;
     }
 
-    .ux-screen .fin-badge--danger {
+    .badge--danger {
       background: var(--danger-weak);
       color: var(--danger);
     }
 
-    .ux-screen .fin-floating-ai {
+    .floating-ai {
       position: absolute;
-      right: 22px;
-      bottom: 22px;
+      right: 28px;
+      bottom: 28px;
       z-index: 2;
       display: inline-flex;
       align-items: center;
@@ -1611,16 +1604,16 @@
       font-weight: 900;
     }
 
-    .ux-screen .fin-chat-shell {
+    .chat-shell {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 286px;
-      gap: 14px;
-      min-height: 680px;
-      padding: 14px;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
+      min-height: 720px;
+      padding: 18px;
       background: linear-gradient(180deg, #fbfcff, #f0f4f9);
     }
 
-    .ux-screen .fin-chat-area {
+    .chat-area {
       display: grid;
       grid-template-rows: auto minmax(0, 1fr) auto;
       gap: 14px;
@@ -1631,7 +1624,7 @@
       padding: 20px;
     }
 
-    .ux-screen .fin-chat-log {
+    .chat-log {
       display: grid;
       align-content: start;
       gap: 14px;
@@ -1639,7 +1632,7 @@
       padding-right: 4px;
     }
 
-    .ux-screen .fin-bubble {
+    .bubble {
       max-width: 78%;
       padding: 14px 16px;
       border-radius: 18px;
@@ -1650,19 +1643,19 @@
       font-weight: 650;
     }
 
-    .ux-screen .fin-bubble--mine {
+    .bubble--mine {
       justify-self: end;
       color: #fff;
       background: var(--primary);
       border-bottom-right-radius: 6px;
     }
 
-    .ux-screen .fin-bubble--ai {
+    .bubble--ai {
       justify-self: start;
       border-bottom-left-radius: 6px;
     }
 
-    .ux-screen .fin-chat-input {
+    .chat-input {
       display: flex;
       gap: 10px;
       align-items: center;
@@ -1672,7 +1665,7 @@
       background: var(--content2);
     }
 
-    .ux-screen .fin-chat-input input {
+    .chat-input input {
       flex: 1;
       min-width: 0;
       height: 44px;
@@ -1685,7 +1678,7 @@
       font-weight: 700;
     }
 
-    .ux-screen .fin-confirm-panel {
+    .confirm-panel {
       display: grid;
       align-content: start;
       gap: 14px;
@@ -1696,19 +1689,19 @@
       box-shadow: var(--shadow-card);
     }
 
-    .ux-screen .fin-parsed-card {
+    .parsed-card {
       padding: 16px;
       border-radius: 18px;
       border: 1px solid var(--border);
       background: #f9fbff;
     }
 
-    .ux-screen .fin-kv-list {
+    .kv-list {
       display: grid;
       gap: 10px;
     }
 
-    .ux-screen .fin-kv {
+    .kv {
       display: flex;
       justify-content: space-between;
       gap: 16px;
@@ -1717,25 +1710,25 @@
       font-weight: 700;
     }
 
-    .ux-screen .fin-kv strong {
+    .kv strong {
       color: var(--foreground);
       text-align: right;
       font-weight: 900;
     }
 
-    .ux-screen .fin-detail-shell {
-      min-height: 680px;
-      padding: 14px;
+    .detail-shell {
+      min-height: 720px;
+      padding: 18px;
       background: linear-gradient(180deg, #fbfcff, #f0f4f9);
     }
 
-    .ux-screen .fin-detail-grid {
+    .detail-grid {
       display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) 236px;
-      gap: 12px;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) 320px;
+      gap: 16px;
     }
 
-    .ux-screen .fin-donut {
+    .donut {
       width: 180px;
       height: 180px;
       margin: 12px auto 18px;
@@ -1744,7 +1737,7 @@
       position: relative;
     }
 
-    .ux-screen .fin-donut::after {
+    .donut::after {
       content: "";
       position: absolute;
       inset: 38px;
@@ -1752,7 +1745,7 @@
       background: #fff;
     }
 
-    .ux-screen .fin-score-ring {
+    .score-ring {
       width: 148px;
       height: 148px;
       border-radius: 50%;
@@ -1763,7 +1756,7 @@
       position: relative;
     }
 
-    .ux-screen .fin-score-ring::after {
+    .score-ring::after {
       content: "";
       position: absolute;
       inset: 14px;
@@ -1771,19 +1764,19 @@
       background: #fff;
     }
 
-    .ux-screen .fin-score-ring strong {
+    .score-ring strong {
       position: relative;
       z-index: 1;
       font-size: 34px;
       font-weight: 900;
     }
 
-    .ux-screen .fin-legend {
+    .legend {
       display: grid;
       gap: 9px;
     }
 
-    .ux-screen .fin-legend-row {
+    .legend-row {
       display: grid;
       grid-template-columns: 10px minmax(0, 1fr) auto;
       gap: 10px;
@@ -1793,77 +1786,187 @@
       font-weight: 800;
     }
 
-    .ux-screen .fin-legend-dot {
+    .legend-dot {
       width: 10px;
       height: 10px;
       border-radius: 99px;
       background: var(--primary);
     }
 
-    .ux-screen .fin-admin-log {
+    .admin-log {
       display: grid;
       gap: 10px;
     }
 
-    .ux-screen .fin-log-item {
+    .log-item {
       padding: 12px;
       border-radius: 14px;
       background: var(--content2);
     }
 
-    .ux-screen .fin-log-item strong {
+    .log-item strong {
       display: block;
       margin-bottom: 4px;
       font-size: 13px;
     }
 
-    .ux-screen .fin-log-item span {
+    .log-item span {
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
     }
 
     @media (max-width: 960px) {
-      .ux-screen .fin-shell,
-      .ux-screen .fin-chat-shell,
-      .ux-screen .fin-detail-grid {
+      .app-shell,
+      .chat-shell,
+      .detail-grid {
         grid-template-columns: 1fr;
       }
 
-      .ux-screen .fin-side-nav {
+      .side-nav {
         display: none;
       }
 
-      .ux-screen .fin-shell,
-      .ux-screen .fin-chat-shell,
-      .ux-screen .fin-detail-shell {
+      .app-shell,
+      .chat-shell,
+      .detail-shell {
         padding: 12px;
       }
 
-      .ux-screen .fin-topbar {
+      .topbar {
         align-items: flex-start;
         gap: 12px;
         flex-direction: column;
       }
 
-      .ux-screen .fin-grid,
-      .ux-screen .fin-metric-grid {
+      .grid,
+      .metric-grid {
         grid-template-columns: 1fr;
       }
 
-      .ux-screen .fin-ai-panel {
+      .ai-panel {
         position: static;
       }
 
-      .ux-screen .fin-floating-ai {
+      .floating-ai {
         right: 18px;
         bottom: 18px;
       }
 
-      .ux-screen .fin-bubble {
+      .bubble {
         max-width: 92%;
       }
     }
+
+    /* Restore the outer 11-ux viewer after embedded screen CSS is inlined. */
+    body > .app-shell {
+      width: min(1600px, calc(100vw - 16px));
+      height: 100%;
+      min-height: 0;
+      margin: 0 auto;
+      padding: 8px 0;
+      display: grid;
+      grid-template-columns: none;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 8px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    body > .app-shell > .app-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    body > .app-shell .header-main {
+      display: grid;
+      justify-items: start;
+      gap: 8px;
+    }
+
+    body > .app-shell .app-title {
+      margin: 0;
+      color: var(--foreground);
+      font-size: 24px;
+      font-weight: 760;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    body > .app-shell .app-summary {
+      max-width: 1040px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    body > .app-shell .header-tools {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    body > .app-shell > .app-header .tabs {
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background: var(--content1);
+      padding: 3px;
+      margin: 0;
+      box-shadow: var(--shadow-small);
+    }
+
+    body > .app-shell > .app-header .tab {
+      position: static;
+      min-height: 30px;
+      border: 0;
+      border-radius: var(--radius-small);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 690;
+      line-height: 1;
+      box-shadow: none;
+    }
+
+    body > .app-shell > .app-header .tab::after {
+      content: none;
+    }
+
+    body > .app-shell > .app-header .tab[aria-selected="true"],
+    body > .app-shell > .app-header .tab.is-selected {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      box-shadow: var(--shadow-small);
+    }
+
+    body > .app-shell .scenario-viewport .screen-body > .ux-screen,
+    body > .app-shell .screen-canvas .screen-body > .ux-screen {
+      width: 1180px;
+      max-width: none;
+      margin: 0;
+    }
+
+    body > .app-shell .ux-screen > .app-shell {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      grid-template-rows: auto;
+      overflow: visible;
+    }
+
   </style>
 </head>
 <body>
@@ -1932,7 +2035,7 @@
                         "자산 상세 보기",
                         "새로고침"
                   ],
-                  "html": "<section class=\"ux-screen\" aria-label=\"포트폴리오 대시보드\">\n  <div class=\"fin-shell\">\n    <aside class=\"fin-side-nav\" aria-label=\"주요 메뉴\">\n      <div class=\"fin-brand-mark\"><span class=\"fin-brand-dot\">A</span><span>AI 자산관리</span></div>\n      <nav class=\"fin-nav-list\">\n        <div class=\"fin-nav-item is-active\"><span>홈</span><span class=\"fin-nav-dot\"></span></div>\n        <div class=\"fin-nav-item\"><span>AI 입력</span></div>\n        <div class=\"fin-nav-item\"><span>상세</span></div>\n        <div class=\"fin-nav-item\"><span>상태</span></div>\n      </nav>\n      <div class=\"fin-side-foot\">\n        <strong>5분 전 갱신</strong>\n        <span>주요 종목 가격과 평가 결과가 5분 전에 갱신되었습니다.</span>\n      </div>\n    </aside>\n\n    <main class=\"fin-main\">\n      <header class=\"fin-topbar\">\n        <div>\n          <p class=\"fin-eyebrow\">PORTFOLIO</p>\n          <h2 class=\"fin-screen-title\">김민준님의 포트폴리오</h2>\n        </div>\n        <div class=\"fin-top-actions\">\n          <span class=\"fin-badge fin-badge--success\">시세 정상</span>\n          <button class=\"fin-icon-button\" type=\"button\" aria-label=\"새로고침\" data-toast=\"최신 데이터로 갱신했어요.\">↻</button>\n        </div>\n      </header>\n\n      <div class=\"fin-grid\">\n        <section class=\"fin-card fin-card--hero\">\n          <div class=\"fin-card-label\">총 평가금액</div>\n          <div class=\"fin-amount\">48,200,400원</div>\n          <span class=\"fin-delta\">오늘 +872,000원 · +1.8%</span>\n          <div class=\"fin-mini-chart\" aria-label=\"최근 7개월 자산 흐름\">\n            <div class=\"fin-bar\" style=\"height: 58%\"></div>\n            <div class=\"fin-bar\"></div>\n            <div class=\"fin-bar\"></div>\n            <div class=\"fin-bar\"></div>\n            <div class=\"fin-bar\"></div>\n            <div class=\"fin-bar\"></div>\n            <div class=\"fin-bar\"></div>\n          </div>\n        </section>\n\n        <section class=\"fin-stack\">\n          <div class=\"fin-metric-grid\">\n            <div class=\"fin-metric-card\">\n              <div class=\"fin-card-label\">가치 평가 점수</div>\n              <div class=\"fin-metric-value\">82점</div>\n              <span class=\"fin-badge fin-badge--success\">안정 구간</span>\n            </div>\n            <div class=\"fin-metric-card\">\n              <div class=\"fin-card-label\">보유 종목</div>\n              <div class=\"fin-metric-value\">8개</div>\n              <span class=\"fin-badge\">미국 주식 72%</span>\n            </div>\n          </div>\n          <div class=\"fin-card\">\n            <div class=\"fin-section-head\">\n              <h3 class=\"fin-section-title\">AI 입력</h3>\n              <span class=\"fin-badge fin-badge--warning\">확인 후 저장</span>\n            </div>\n            <p class=\"fin-asset-meta\">채팅으로 보유 자산을 말하면 종목과 수량을 구조화해 보여줍니다.</p>\n            <button class=\"fin-button fin-button--primary\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\">AI로 자산 추가</button>\n          </div>\n        </section>\n      </div>\n\n      <section class=\"fin-card\" style=\"margin-top: 16px;\">\n        <div class=\"fin-section-head\">\n          <h3 class=\"fin-section-title\">보유 자산</h3>\n          <div class=\"fin-tabs\" role=\"tablist\" aria-label=\"자산 필터\">\n            <button class=\"fin-tab is-active\" type=\"button\">전체</button>\n            <button class=\"fin-tab\" type=\"button\">주식</button>\n            <button class=\"fin-tab\" type=\"button\">검수 필요</button>\n          </div>\n        </div>\n        <div class=\"fin-asset-list\">\n          <button class=\"fin-asset-row\" type=\"button\" data-scenario-target=\"dashboard-asset-detail\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"fin-asset-icon\">AP</span>\n            <span><span class=\"fin-asset-name\">Apple</span><span class=\"fin-asset-meta\">10주 · 평가 안정</span></span>\n            <span class=\"fin-asset-value\">28,915,000원<br><span class=\"fin-asset-meta\">+2.1%</span></span>\n          </button>\n          <button class=\"fin-asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"fin-asset-icon fin-asset-icon--red\">TS</span>\n            <span><span class=\"fin-asset-name\">Tesla</span><span class=\"fin-asset-meta\">3주 · 변동성 높음</span></span>\n            <span class=\"fin-asset-value\">4,908,000원<br><span class=\"fin-asset-meta\">-0.6%</span></span>\n          </button>\n          <button class=\"fin-asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"fin-asset-icon fin-asset-icon--blue\">SP</span>\n            <span><span class=\"fin-asset-name\">S&P 500 ETF</span><span class=\"fin-asset-meta\">장기 분산</span></span>\n            <span class=\"fin-asset-value\">10,628,000원<br><span class=\"fin-asset-meta\">+0.8%</span></span>\n          </button>\n        </div>\n      </section>\n    </main>\n\n    <aside class=\"fin-panel fin-ai-panel\" aria-label=\"AI 자산 코치\">\n      <div class=\"fin-ai-orb\">AI</div>\n      <h3 class=\"fin-section-title\" style=\"margin-top: 16px;\">AI 자산 코치</h3>\n      <div class=\"fin-status-card\">\n        <div class=\"fin-status-line\"><span class=\"fin-card-label\">입력 해석</span><span class=\"fin-badge fin-badge--success\">정상</span></div>\n        <div class=\"fin-status-line\"><span class=\"fin-card-label\">시세 반영</span><span class=\"fin-badge fin-badge--success\">5분 전</span></div>\n        <div class=\"fin-status-line\"><span class=\"fin-card-label\">확인 대기</span><span class=\"fin-badge fin-badge--warning\">2건</span></div>\n      </div>\n      <div class=\"fin-card\" style=\"margin-top: 16px; box-shadow: none;\">\n        <div class=\"fin-card-label\">최근 AI 입력</div>\n        <p class=\"fin-asset-meta\">\"애플 10주와 테슬라 3주 보유 중이야\" 입력이 구조화되어 저장 대기 중입니다.</p>\n      </div>\n    </aside>\n  </div>\n  <button class=\"fin-floating-ai\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\"><span>AI</span><span>자산 입력</span></button>\n</section>"
+                  "html": "<section class=\"ux-screen\" aria-label=\"포트폴리오 대시보드\">\n  <div class=\"app-shell\">\n    <aside class=\"side-nav\" aria-label=\"주요 메뉴\">\n      <div class=\"brand-mark\"><span class=\"brand-dot\">A</span><span>AI 자산관리</span></div>\n      <nav class=\"nav-list\">\n        <div class=\"nav-item is-active\"><span>홈</span><span class=\"nav-dot\"></span></div>\n        <div class=\"nav-item\"><span>AI 입력</span></div>\n        <div class=\"nav-item\"><span>상세</span></div>\n        <div class=\"nav-item\"><span>상태</span></div>\n      </nav>\n      <div class=\"side-foot\">\n        <strong>5분 전 갱신</strong>\n        <span>주요 종목 가격과 평가 결과가 5분 전에 갱신되었습니다.</span>\n      </div>\n    </aside>\n\n    <main class=\"app-main\">\n      <header class=\"topbar\">\n        <div>\n          <p class=\"eyebrow\">PORTFOLIO</p>\n          <h2 class=\"screen-title\">김민준님의 포트폴리오</h2>\n        </div>\n        <div class=\"top-actions\">\n          <span class=\"badge badge--success\">시세 정상</span>\n          <button class=\"icon-button\" type=\"button\" aria-label=\"새로고침\" data-toast=\"최신 데이터로 갱신했어요.\">↻</button>\n        </div>\n      </header>\n\n      <div class=\"grid\">\n        <section class=\"card card--hero\">\n          <div class=\"card-label\">총 평가금액</div>\n          <div class=\"amount\">48,200,400원</div>\n          <span class=\"delta\">오늘 +872,000원 · +1.8%</span>\n          <div class=\"mini-chart\" aria-label=\"최근 7개월 자산 흐름\">\n            <div class=\"bar\" style=\"height: 58%\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n          </div>\n        </section>\n\n        <section class=\"stack\">\n          <div class=\"metric-grid\">\n            <div class=\"metric-card\">\n              <div class=\"card-label\">가치 평가 점수</div>\n              <div class=\"metric-value\">82점</div>\n              <span class=\"badge badge--success\">안정 구간</span>\n            </div>\n            <div class=\"metric-card\">\n              <div class=\"card-label\">보유 종목</div>\n              <div class=\"metric-value\">8개</div>\n              <span class=\"badge\">미국 주식 72%</span>\n            </div>\n          </div>\n          <div class=\"card\">\n            <div class=\"section-head\">\n              <h3 class=\"section-title\">AI 입력</h3>\n              <span class=\"badge badge--warning\">확인 후 저장</span>\n            </div>\n            <p class=\"asset-meta\">채팅으로 보유 자산을 말하면 종목과 수량을 구조화해 보여줍니다.</p>\n            <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\">AI로 자산 추가</button>\n          </div>\n        </section>\n      </div>\n\n      <section class=\"card\" style=\"margin-top: 16px;\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">보유 자산</h3>\n          <div class=\"tabs\" role=\"tablist\" aria-label=\"자산 필터\">\n            <button class=\"tab is-active\" type=\"button\">전체</button>\n            <button class=\"tab\" type=\"button\">주식</button>\n            <button class=\"tab\" type=\"button\">검수 필요</button>\n          </div>\n        </div>\n        <div class=\"asset-list\">\n          <button class=\"asset-row\" type=\"button\" data-scenario-target=\"dashboard-asset-detail\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon\">AP</span>\n            <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">10주 · 평가 안정</span></span>\n            <span class=\"asset-value\">28,915,000원<br><span class=\"asset-meta\">+2.1%</span></span>\n          </button>\n          <button class=\"asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon asset-icon--red\">TS</span>\n            <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">3주 · 변동성 높음</span></span>\n            <span class=\"asset-value\">4,908,000원<br><span class=\"asset-meta\">-0.6%</span></span>\n          </button>\n          <button class=\"asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon asset-icon--blue\">SP</span>\n            <span><span class=\"asset-name\">S&P 500 ETF</span><span class=\"asset-meta\">장기 분산</span></span>\n            <span class=\"asset-value\">10,628,000원<br><span class=\"asset-meta\">+0.8%</span></span>\n          </button>\n        </div>\n      </section>\n    </main>\n\n    <aside class=\"panel ai-panel\" aria-label=\"AI 자산 코치\">\n      <div class=\"ai-orb\">AI</div>\n      <h3 class=\"section-title\" style=\"margin-top: 16px;\">AI 자산 코치</h3>\n      <div class=\"status-card\">\n        <div class=\"status-line\"><span class=\"card-label\">입력 해석</span><span class=\"badge badge--success\">정상</span></div>\n        <div class=\"status-line\"><span class=\"card-label\">시세 반영</span><span class=\"badge badge--success\">5분 전</span></div>\n        <div class=\"status-line\"><span class=\"card-label\">확인 대기</span><span class=\"badge badge--warning\">2건</span></div>\n      </div>\n      <div class=\"card\" style=\"margin-top: 16px; box-shadow: none;\">\n        <div class=\"card-label\">최근 AI 입력</div>\n        <p class=\"asset-meta\">\"애플 10주와 테슬라 3주 보유 중이야\" 입력이 구조화되어 저장 대기 중입니다.</p>\n      </div>\n    </aside>\n  </div>\n  <button class=\"floating-ai\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\"><span>AI</span><span>자산 입력</span></button>\n</section>"
             },
             {
                   "id": "ai-chat",
@@ -1943,7 +2046,7 @@
                         "분석하기",
                         "포트폴리오 반영"
                   ],
-                  "html": "<section class=\"ux-screen\" aria-label=\"AI 자산 입력\">\n  <div class=\"fin-chat-shell\">\n    <main class=\"fin-chat-area\">\n      <header class=\"fin-topbar\" style=\"margin-bottom: 0;\">\n        <div>\n          <p class=\"fin-eyebrow\">AI ASSET INPUT</p>\n          <h2 class=\"fin-screen-title\">채팅으로 자산 추가</h2>\n        </div>\n        <span class=\"fin-badge fin-badge--warning\">저장 전 확인</span>\n      </header>\n\n      <div class=\"fin-chat-log\" aria-label=\"AI 자산 입력 대화\">\n        <div class=\"fin-bubble fin-bubble--mine\">애플 10주와 테슬라 3주 보유 중이야. 포트폴리오에 넣어줘.</div>\n        <div class=\"fin-bubble fin-bubble--ai\">입력하신 문장에서 보유 종목 2개를 찾았습니다. 저장 전에 종목과 수량을 확인해주세요.</div>\n        <div class=\"fin-parsed-card\">\n          <div class=\"fin-section-head\">\n            <h3 class=\"fin-section-title\">해석 결과</h3>\n            <span class=\"fin-badge fin-badge--success\">2개 종목</span>\n          </div>\n          <div class=\"fin-asset-list\">\n            <div class=\"fin-asset-row\">\n              <span class=\"fin-asset-icon\">AP</span>\n              <span><span class=\"fin-asset-name\">Apple</span><span class=\"fin-asset-meta\">보유 수량 10주</span></span>\n              <span class=\"fin-asset-value\">28,915,000원</span>\n            </div>\n            <div class=\"fin-asset-row\">\n              <span class=\"fin-asset-icon fin-asset-icon--red\">TS</span>\n              <span><span class=\"fin-asset-name\">Tesla</span><span class=\"fin-asset-meta\">보유 수량 3주</span></span>\n              <span class=\"fin-asset-value\">4,908,000원</span>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"fin-chat-input\">\n        <input value=\"엔비디아 2주도 추가해줘\" aria-label=\"자산 입력 문장\" />\n        <button class=\"fin-button fin-button--primary\" type=\"button\" data-scenario-target=\"chat-analyze\" data-toast=\"입력 문장을 구조화했어요.\">분석하기</button>\n      </div>\n    </main>\n\n    <aside class=\"fin-confirm-panel\" aria-label=\"저장 전 확인\">\n      <div>\n        <p class=\"fin-eyebrow\">CONFIRM</p>\n        <h3 class=\"fin-screen-title\" style=\"font-size: 24px; line-height: 32px;\">등록 전 확인</h3>\n      </div>\n\n      <div class=\"fin-parsed-card\">\n        <div class=\"fin-kv-list\">\n          <div class=\"fin-kv\"><span>추가 평가금액</span><strong>33,823,000원</strong></div>\n          <div class=\"fin-kv\"><span>포트폴리오 비중 변화</span><strong>미국 주식 72% → 78%</strong></div>\n          <div class=\"fin-kv\"><span>가치 평가 영향</span><strong>82점 유지</strong></div>\n          <div class=\"fin-kv\"><span>처리 방식</span><strong>보유 자산 등록</strong></div>\n        </div>\n      </div>\n\n      <div class=\"fin-card\" style=\"box-shadow: none;\">\n        <div class=\"fin-card-label\">저장 전 안내</div>\n        <p class=\"fin-asset-meta\">AI 해석 결과는 사용자가 확인한 뒤에만 포트폴리오에 반영됩니다. 종목명이 다르면 다시 입력할 수 있습니다.</p>\n      </div>\n\n      <button class=\"fin-button fin-button--primary\" type=\"button\" data-scenario-target=\"chat-confirm-save\" data-nav-screen=\"asset-detail\" data-toast=\"포트폴리오에 반영했어요.\">포트폴리오에 반영</button>\n      <button class=\"fin-button fin-button--ghost\" type=\"button\" data-toast=\"입력창으로 돌아갑니다.\">다시 입력</button>\n    </aside>\n  </div>\n</section>"
+                  "html": "<section class=\"ux-screen\" aria-label=\"AI 자산 입력\">\n  <div class=\"chat-shell\">\n    <main class=\"chat-area\">\n      <header class=\"topbar\" style=\"margin-bottom: 0;\">\n        <div>\n          <p class=\"eyebrow\">AI ASSET INPUT</p>\n          <h2 class=\"screen-title\">채팅으로 자산 추가</h2>\n        </div>\n        <span class=\"badge badge--warning\">저장 전 확인</span>\n      </header>\n\n      <div class=\"chat-log\" aria-label=\"AI 자산 입력 대화\">\n        <div class=\"bubble bubble--mine\">애플 10주와 테슬라 3주 보유 중이야. 포트폴리오에 넣어줘.</div>\n        <div class=\"bubble bubble--ai\">입력하신 문장에서 보유 종목 2개를 찾았습니다. 저장 전에 종목과 수량을 확인해주세요.</div>\n        <div class=\"parsed-card\">\n          <div class=\"section-head\">\n            <h3 class=\"section-title\">해석 결과</h3>\n            <span class=\"badge badge--success\">2개 종목</span>\n          </div>\n          <div class=\"asset-list\">\n            <div class=\"asset-row\">\n              <span class=\"asset-icon\">AP</span>\n              <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">보유 수량 10주</span></span>\n              <span class=\"asset-value\">28,915,000원</span>\n            </div>\n            <div class=\"asset-row\">\n              <span class=\"asset-icon asset-icon--red\">TS</span>\n              <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">보유 수량 3주</span></span>\n              <span class=\"asset-value\">4,908,000원</span>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"chat-input\">\n        <input value=\"엔비디아 2주도 추가해줘\" aria-label=\"자산 입력 문장\" />\n        <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"chat-analyze\" data-toast=\"입력 문장을 구조화했어요.\">분석하기</button>\n      </div>\n    </main>\n\n    <aside class=\"confirm-panel\" aria-label=\"저장 전 확인\">\n      <div>\n        <p class=\"eyebrow\">CONFIRM</p>\n        <h3 class=\"screen-title\" style=\"font-size: 24px; line-height: 32px;\">등록 전 확인</h3>\n      </div>\n\n      <div class=\"parsed-card\">\n        <div class=\"kv-list\">\n          <div class=\"kv\"><span>추가 평가금액</span><strong>33,823,000원</strong></div>\n          <div class=\"kv\"><span>포트폴리오 비중 변화</span><strong>미국 주식 72% → 78%</strong></div>\n          <div class=\"kv\"><span>가치 평가 영향</span><strong>82점 유지</strong></div>\n          <div class=\"kv\"><span>처리 방식</span><strong>보유 자산 등록</strong></div>\n        </div>\n      </div>\n\n      <div class=\"card\" style=\"box-shadow: none;\">\n        <div class=\"card-label\">저장 전 안내</div>\n        <p class=\"asset-meta\">AI 해석 결과는 사용자가 확인한 뒤에만 포트폴리오에 반영됩니다. 종목명이 다르면 다시 입력할 수 있습니다.</p>\n      </div>\n\n      <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"chat-confirm-save\" data-nav-screen=\"asset-detail\" data-toast=\"포트폴리오에 반영했어요.\">포트폴리오에 반영</button>\n      <button class=\"button button--ghost\" type=\"button\" data-toast=\"입력창으로 돌아갑니다.\">다시 입력</button>\n    </aside>\n  </div>\n</section>"
             },
             {
                   "id": "asset-detail",
@@ -1954,7 +2057,7 @@
                         "평가 다시 계산",
                         "관리자 검수 보기"
                   ],
-                  "html": "<section class=\"ux-screen\" aria-label=\"자산과 가치 평가 상세\">\n  <div class=\"fin-detail-shell\">\n    <header class=\"fin-topbar\">\n      <div>\n        <p class=\"fin-eyebrow\">ASSET DETAIL</p>\n        <h2 class=\"fin-screen-title\">포트폴리오 상세 분석</h2>\n      </div>\n      <div class=\"fin-top-actions\">\n        <button class=\"fin-button fin-button--soft\" type=\"button\" data-scenario-target=\"detail-back-dashboard\" data-nav-screen=\"dashboard\" data-toast=\"대시보드로 이동합니다.\">대시보드</button>\n        <button class=\"fin-button fin-button--primary\" type=\"button\" data-scenario-target=\"detail-recalculate\" data-toast=\"가치 평가를 다시 계산했어요.\">평가 다시 계산</button>\n      </div>\n    </header>\n\n    <div class=\"fin-detail-grid\">\n      <section class=\"fin-card\">\n        <div class=\"fin-section-head\">\n          <h3 class=\"fin-section-title\">자산 구성</h3>\n          <span class=\"fin-badge fin-badge--success\">분산 양호</span>\n        </div>\n        <div class=\"fin-donut\" aria-label=\"자산 구성 도넛 차트\"></div>\n        <div class=\"fin-legend\">\n          <div class=\"fin-legend-row\"><span class=\"fin-legend-dot\" style=\"background:#2f6df6\"></span><span>미국 대형주</span><strong>42%</strong></div>\n          <div class=\"fin-legend-row\"><span class=\"fin-legend-dot\" style=\"background:#18b981\"></span><span>지수 ETF</span><strong>22%</strong></div>\n          <div class=\"fin-legend-row\"><span class=\"fin-legend-dot\" style=\"background:#6c5ce7\"></span><span>성장주</span><strong>16%</strong></div>\n          <div class=\"fin-legend-row\"><span class=\"fin-legend-dot\" style=\"background:#ef4444\"></span><span>변동성 종목</span><strong>11%</strong></div>\n          <div class=\"fin-legend-row\"><span class=\"fin-legend-dot\" style=\"background:#f5a524\"></span><span>현금성</span><strong>9%</strong></div>\n        </div>\n      </section>\n\n      <section class=\"fin-card\">\n        <div class=\"fin-section-head\">\n          <h3 class=\"fin-section-title\">가치 평가 결과</h3>\n          <span class=\"fin-badge fin-badge--warning\">로직 v1</span>\n        </div>\n        <div class=\"fin-score-ring\"><strong>82</strong></div>\n        <div class=\"fin-kv-list\">\n          <div class=\"fin-kv\"><span>성장성</span><strong>높음</strong></div>\n          <div class=\"fin-kv\"><span>변동성</span><strong>관리 필요</strong></div>\n          <div class=\"fin-kv\"><span>분산도</span><strong>양호</strong></div>\n          <div class=\"fin-kv\"><span>마지막 계산</span><strong>오늘 15:18</strong></div>\n        </div>\n        <div class=\"fin-card\" style=\"margin-top: 16px; box-shadow: none; background: #f9fbff;\">\n          <div class=\"fin-card-label\">해석</div>\n          <p class=\"fin-asset-meta\">대형주와 지수형 자산 비중이 높아 안정 구간입니다. 일부 변동성 종목은 비중 추적 대상으로 표시됩니다.</p>\n        </div>\n      </section>\n\n      <aside class=\"fin-panel\" aria-label=\"운영 확인\">\n        <div class=\"fin-section-head\">\n          <h3 class=\"fin-section-title\">운영 확인</h3>\n          <span class=\"fin-badge fin-badge--warning\">2건</span>\n        </div>\n        <div class=\"fin-admin-log\">\n          <div class=\"fin-log-item\">\n            <strong>종목 매칭 검수</strong>\n            <span>사용자 입력 중 유사 종목명이 발견되어 저장 전 확인 상태로 유지됩니다.</span>\n          </div>\n          <div class=\"fin-log-item\">\n            <strong>가격 갱신 지연</strong>\n            <span>일부 종목의 시세 갱신이 지연되어 마지막 정상 가격을 표시합니다.</span>\n          </div>\n          <div class=\"fin-log-item\">\n            <strong>평가 로직 정상</strong>\n            <span>최근 계산 결과가 기준 범위 안에서 재현되었습니다.</span>\n          </div>\n        </div>\n        <button class=\"fin-button fin-button--dark\" style=\"width: 100%; margin-top: 16px;\" type=\"button\" data-scenario-target=\"detail-admin-review\" data-toast=\"검수 대상을 표시했어요.\">관리자 검수 보기</button>\n      </aside>\n    </div>\n\n    <section class=\"fin-card\" style=\"margin-top: 16px;\">\n      <div class=\"fin-section-head\">\n        <h3 class=\"fin-section-title\">보유 종목 상세</h3>\n        <span class=\"fin-badge\">8개 종목</span>\n      </div>\n      <div class=\"fin-asset-list\">\n        <div class=\"fin-asset-row\">\n          <span class=\"fin-asset-icon\">AP</span>\n          <span><span class=\"fin-asset-name\">Apple</span><span class=\"fin-asset-meta\">대형주 · 핵심 보유</span></span>\n          <span class=\"fin-asset-value\">28,915,000원<br><span class=\"fin-asset-meta\">비중 42%</span></span>\n        </div>\n        <div class=\"fin-asset-row\">\n          <span class=\"fin-asset-icon fin-asset-icon--blue\">SP</span>\n          <span><span class=\"fin-asset-name\">S&P 500 ETF</span><span class=\"fin-asset-meta\">지수형 · 장기 분산</span></span>\n          <span class=\"fin-asset-value\">10,628,000원<br><span class=\"fin-asset-meta\">비중 22%</span></span>\n        </div>\n        <div class=\"fin-asset-row\">\n          <span class=\"fin-asset-icon fin-asset-icon--red\">TS</span>\n          <span><span class=\"fin-asset-name\">Tesla</span><span class=\"fin-asset-meta\">변동성 추적 대상</span></span>\n          <span class=\"fin-asset-value\">4,908,000원<br><span class=\"fin-asset-meta\">비중 11%</span></span>\n        </div>\n      </div>\n    </section>\n  </div>\n</section>"
+                  "html": "<section class=\"ux-screen\" aria-label=\"자산과 가치 평가 상세\">\n  <div class=\"detail-shell\">\n    <header class=\"topbar\">\n      <div>\n        <p class=\"eyebrow\">ASSET DETAIL</p>\n        <h2 class=\"screen-title\">포트폴리오 상세 분석</h2>\n      </div>\n      <div class=\"top-actions\">\n        <button class=\"button button--soft\" type=\"button\" data-scenario-target=\"detail-back-dashboard\" data-nav-screen=\"dashboard\" data-toast=\"대시보드로 이동합니다.\">대시보드</button>\n        <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"detail-recalculate\" data-toast=\"가치 평가를 다시 계산했어요.\">평가 다시 계산</button>\n      </div>\n    </header>\n\n    <div class=\"detail-grid\">\n      <section class=\"card\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">자산 구성</h3>\n          <span class=\"badge badge--success\">분산 양호</span>\n        </div>\n        <div class=\"donut\" aria-label=\"자산 구성 도넛 차트\"></div>\n        <div class=\"legend\">\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#2f6df6\"></span><span>미국 대형주</span><strong>42%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#18b981\"></span><span>지수 ETF</span><strong>22%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#6c5ce7\"></span><span>성장주</span><strong>16%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#ef4444\"></span><span>변동성 종목</span><strong>11%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#f5a524\"></span><span>현금성</span><strong>9%</strong></div>\n        </div>\n      </section>\n\n      <section class=\"card\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">가치 평가 결과</h3>\n          <span class=\"badge badge--warning\">로직 v1</span>\n        </div>\n        <div class=\"score-ring\"><strong>82</strong></div>\n        <div class=\"kv-list\">\n          <div class=\"kv\"><span>성장성</span><strong>높음</strong></div>\n          <div class=\"kv\"><span>변동성</span><strong>관리 필요</strong></div>\n          <div class=\"kv\"><span>분산도</span><strong>양호</strong></div>\n          <div class=\"kv\"><span>마지막 계산</span><strong>오늘 15:18</strong></div>\n        </div>\n        <div class=\"card\" style=\"margin-top: 16px; box-shadow: none; background: #f9fbff;\">\n          <div class=\"card-label\">해석</div>\n          <p class=\"asset-meta\">대형주와 지수형 자산 비중이 높아 안정 구간입니다. 일부 변동성 종목은 비중 추적 대상으로 표시됩니다.</p>\n        </div>\n      </section>\n\n      <aside class=\"panel\" aria-label=\"운영 확인\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">운영 확인</h3>\n          <span class=\"badge badge--warning\">2건</span>\n        </div>\n        <div class=\"admin-log\">\n          <div class=\"log-item\">\n            <strong>종목 매칭 검수</strong>\n            <span>사용자 입력 중 유사 종목명이 발견되어 저장 전 확인 상태로 유지됩니다.</span>\n          </div>\n          <div class=\"log-item\">\n            <strong>가격 갱신 지연</strong>\n            <span>일부 종목의 시세 갱신이 지연되어 마지막 정상 가격을 표시합니다.</span>\n          </div>\n          <div class=\"log-item\">\n            <strong>평가 로직 정상</strong>\n            <span>최근 계산 결과가 기준 범위 안에서 재현되었습니다.</span>\n          </div>\n        </div>\n        <button class=\"button button--dark\" style=\"width: 100%; margin-top: 16px;\" type=\"button\" data-scenario-target=\"detail-admin-review\" data-toast=\"검수 대상을 표시했어요.\">관리자 검수 보기</button>\n      </aside>\n    </div>\n\n    <section class=\"card\" style=\"margin-top: 16px;\">\n      <div class=\"section-head\">\n        <h3 class=\"section-title\">보유 종목 상세</h3>\n        <span class=\"badge\">8개 종목</span>\n      </div>\n      <div class=\"asset-list\">\n        <div class=\"asset-row\">\n          <span class=\"asset-icon\">AP</span>\n          <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">대형주 · 핵심 보유</span></span>\n          <span class=\"asset-value\">28,915,000원<br><span class=\"asset-meta\">비중 42%</span></span>\n        </div>\n        <div class=\"asset-row\">\n          <span class=\"asset-icon asset-icon--blue\">SP</span>\n          <span><span class=\"asset-name\">S&P 500 ETF</span><span class=\"asset-meta\">지수형 · 장기 분산</span></span>\n          <span class=\"asset-value\">10,628,000원<br><span class=\"asset-meta\">비중 22%</span></span>\n        </div>\n        <div class=\"asset-row\">\n          <span class=\"asset-icon asset-icon--red\">TS</span>\n          <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">변동성 추적 대상</span></span>\n          <span class=\"asset-value\">4,908,000원<br><span class=\"asset-meta\">비중 11%</span></span>\n        </div>\n      </div>\n    </section>\n  </div>\n</section>"
             }
       ],
       "scenarios": [
