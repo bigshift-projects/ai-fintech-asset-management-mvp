@@ -472,9 +472,23 @@
       min-width: 0;
       min-height: 0;
       display: grid;
-      grid-template-rows: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
       background: var(--content1);
       overflow: hidden;
+    }
+
+    .mockup-scroll-notice {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--divider);
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
     }
 
     .scenario-viewport {
@@ -1996,6 +2010,7 @@
     <section class="scenario-browser mode-panel is-active" id="flowPanel" aria-label="시나리오 UX">
       <nav class="scenario-list" id="scenarioList" aria-label="시나리오 목록"></nav>
       <main class="scenario-stage" id="scenarioStage">
+        <div class="mockup-scroll-notice">목업 영역은 가로/세로 스크롤로 전체 화면을 확인할 수 있습니다.</div>
         <div class="scenario-viewport" id="scenarioViewport"></div>
         <div class="scenario-cursor" id="scenarioCursor" aria-hidden="true"></div>
       </main>
