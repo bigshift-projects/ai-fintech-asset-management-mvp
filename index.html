@@ -1,0 +1,2615 @@
+<!doctype html>
+<html lang="ko" class="light" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>화면시안</title>
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+    /*
+      HeroUI-style static HTML template
+      - HeroUI React packages are not imported because this artifact must run as a single HTML file.
+      - The naming follows HeroUI's theme-variable and component-slot approach: Button, Card,
+        Chip, Tabs, Table, Form, Spinner, Toast, and Surface-like containers.
+    */
+
+    :root,
+    [data-theme="light"] {
+      color-scheme: light;
+      --background: #f6f7fb;
+      --foreground: #111827;
+      --content1: #ffffff;
+      --content2: #f8fafc;
+      --content3: #eef2f7;
+      --content4: #e4e8f0;
+      --default: #f4f4f5;
+      --default-foreground: #27272a;
+      --primary: #006fee;
+      --primary-foreground: #ffffff;
+      --secondary: #7c3aed;
+      --secondary-foreground: #ffffff;
+      --success: #17c964;
+      --success-foreground: #052e16;
+      --warning: #f5a524;
+      --warning-foreground: #3f2a03;
+      --danger: #f31260;
+      --danger-foreground: #ffffff;
+      --muted: #667085;
+      --muted-foreground: #8a94a6;
+      --border: #d7dde8;
+      --divider: #e5e7eb;
+      --field-background: #ffffff;
+      --field-border: #cbd5e1;
+      --focus-ring: rgba(0, 111, 238, .24);
+      --shadow-small: 0 1px 2px rgba(15, 23, 42, .08);
+      --shadow-medium: 0 8px 28px rgba(15, 23, 42, .10);
+      --radius-small: 6px;
+      --radius-medium: 8px;
+      --radius-large: 8px;
+      /* Pretendard is the first-choice sans-serif for generated UX artifacts. */
+      --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      color: var(--foreground);
+      background: var(--background);
+      font-family: var(--font-sans);
+      text-rendering: optimizeLegibility;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .45;
+    }
+
+    .app-shell {
+      width: min(1600px, calc(100vw - 16px));
+      height: 100%;
+      margin: 0 auto;
+      padding: 8px 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .header-main {
+      display: grid;
+      justify-items: start;
+      gap: 8px;
+    }
+
+    .app-title {
+      margin: 0;
+      color: var(--foreground);
+      font-size: 24px;
+      font-weight: 760;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .app-summary {
+      max-width: 1040px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .header-tools {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 34px;
+      text-decoration: none;
+    }
+
+    .brand-logo img {
+      display: block;
+      width: 154px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .tabs {
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background: var(--content1);
+      padding: 3px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .tab {
+      min-height: 30px;
+      border: 0;
+      border-radius: var(--radius-small);
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 690;
+      transition: background .16s ease, color .16s ease, box-shadow .16s ease;
+    }
+
+    .tab:hover {
+      background: var(--content2);
+      color: var(--foreground);
+    }
+
+    .tab[aria-selected="true"],
+    .tab.is-selected {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      box-shadow: var(--shadow-small);
+    }
+
+    .mode-panel {
+      display: none;
+    }
+
+    .mode-panel.is-active {
+      display: block;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background: var(--content1);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .card--secondary {
+      background: var(--content2);
+    }
+
+    .card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--divider);
+      background: var(--content2);
+    }
+
+    .card__title {
+      margin: 0;
+      color: var(--foreground);
+      font-size: 16px;
+      font-weight: 760;
+      line-height: 1.35;
+    }
+
+    .card__description {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .card__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-small);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1;
+      text-decoration: none;
+      transition: background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .button--solid.button--primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .button--solid.button--success {
+      background: var(--success);
+      color: var(--success-foreground);
+    }
+
+    .button--solid.button--danger {
+      background: var(--danger);
+      color: var(--danger-foreground);
+    }
+
+    .button--flat {
+      border-color: transparent;
+      background: rgba(0, 111, 238, .10);
+      color: var(--primary);
+    }
+
+    .button--bordered {
+      border-color: var(--border);
+      background: var(--content1);
+      color: var(--default-foreground);
+    }
+
+    .button--bordered:hover,
+    .button--flat:hover {
+      border-color: var(--primary);
+      background: rgba(0, 111, 238, .12);
+      color: var(--primary);
+    }
+
+    .button--sm {
+      min-height: 30px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-small);
+      background: var(--default);
+      color: var(--default-foreground);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 690;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .chip--primary {
+      background: rgba(0, 111, 238, .12);
+      color: #005bc4;
+    }
+
+    .chip--success {
+      background: rgba(23, 201, 100, .16);
+      color: #047857;
+    }
+
+    .chip--warning {
+      background: rgba(245, 165, 36, .18);
+      color: #92400e;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 560px;
+    }
+
+    .screen-browser {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background: var(--content1);
+    }
+
+    .screen-list {
+      border-right: 1px solid var(--divider);
+      background: var(--content2);
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .screen-browser.mode-panel:not(.is-active),
+    .scenario-browser.mode-panel:not(.is-active) {
+      display: none;
+    }
+
+    .screen-browser.mode-panel.is-active,
+    .scenario-browser.mode-panel.is-active {
+      display: grid;
+    }
+
+    .scenario-browser {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background: var(--content1);
+    }
+
+    .scenario-list {
+      display: grid;
+      align-content: start;
+      min-height: 0;
+      overflow: auto;
+      border-right: 1px solid var(--divider);
+      background: var(--content2);
+    }
+
+    .scenario-item {
+      width: 100%;
+      display: grid;
+      gap: 10px;
+      border: 0;
+      border-bottom: 1px solid var(--divider);
+      border-left: 3px solid transparent;
+      background: transparent;
+      padding: 14px 16px;
+      color: var(--foreground);
+      text-align: left;
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease;
+    }
+
+    .scenario-item:hover {
+      background: var(--content3);
+    }
+
+    .scenario-item.is-selected {
+      border-left-color: var(--primary);
+      background: rgba(0, 111, 238, .10);
+    }
+
+    .scenario-item__title {
+      display: block;
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.45;
+    }
+
+    .scenario-item__description {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .scenario-item__flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 690;
+      line-height: 1.45;
+    }
+
+    .scenario-flow-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-small);
+      background: var(--content1);
+      color: var(--foreground);
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 720;
+      line-height: 1.1;
+      box-shadow: var(--shadow-small);
+    }
+
+    .scenario-flow-arrow {
+      color: var(--muted-foreground);
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1;
+    }
+
+    .scenario-run {
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .scenario-stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr);
+      background: var(--content1);
+      overflow: hidden;
+    }
+
+    .scenario-viewport {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: auto;
+      background: var(--content1);
+      scroll-behavior: smooth;
+    }
+
+    .scenario-viewport .screen-body {
+      min-height: 100%;
+      overflow: visible;
+    }
+
+    .scenario-viewport .is-scenario-highlight {
+      outline: 3px solid rgba(249, 115, 22, .72);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px rgba(249, 115, 22, .18), 0 10px 28px rgba(15, 23, 42, .16);
+    }
+
+    .scenario-cursor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 42px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(24px, 86px);
+      transition: transform .58s cubic-bezier(.22, 1, .36, 1), opacity .16s ease;
+      z-index: 30;
+    }
+
+    .scenario-cursor.is-visible {
+      opacity: 1;
+    }
+
+    .scenario-cursor::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='42' height='42' viewBox='0 0 42 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23shadow)'%3E%3Cpath d='M8.7 7.8C8.1 6.4 9.6 5 10.9 5.7L34.2 17.2C35.7 17.9 35.5 20 33.9 20.4L24.5 22.6C24 22.7 23.5 23.1 23.3 23.6L19.7 32.7C19.1 34.2 17 34.2 16.4 32.7L8.7 7.8Z' fill='%230A0A0A' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M10.2 7.8L17.9 32.2L21.6 22.5C21.9 21.8 22.5 21.2 23.3 21L33.4 18.6L10.2 7.8Z' fill='%230A0A0A'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='shadow' x='2' y='1' width='37' height='38' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeDropShadow dx='0' dy='2' stdDeviation='2' flood-color='%230F172A' flood-opacity='0.35'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, .9));
+    }
+
+    .scenario-cursor::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(0, 111, 238, .68);
+      border-radius: 999px;
+      opacity: 0;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, .70), 0 0 18px rgba(0, 111, 238, .36);
+    }
+
+    .scenario-cursor.is-clicking::after {
+      opacity: 1;
+      border-color: var(--primary);
+      animation: cursor-pulse .52s ease-out both;
+    }
+
+    @keyframes cursor-pulse {
+      from {
+        opacity: .95;
+        transform: scale(.65);
+      }
+      to {
+        opacity: 0;
+        transform: scale(3);
+      }
+    }
+
+    .listbox-item {
+      width: 100%;
+      display: block;
+      border: 0;
+      border-bottom: 1px solid var(--divider);
+      border-left: 3px solid transparent;
+      background: transparent;
+      padding: 14px 16px;
+      color: var(--foreground);
+      cursor: pointer;
+      text-align: left;
+      transition: background .16s ease, border-color .16s ease;
+    }
+
+    .listbox-item:hover {
+      background: var(--content3);
+    }
+
+    .listbox-item[aria-selected="true"],
+    .listbox-item.is-selected {
+      border-left-color: var(--primary);
+      background: rgba(0, 111, 238, .10);
+    }
+
+    .listbox-item__title {
+      display: block;
+      color: var(--foreground);
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.45;
+    }
+
+    .listbox-item__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .listbox-item__action {
+      margin-top: 10px;
+    }
+
+    .chat {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      background: var(--content1);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--divider);
+      background: var(--content1);
+    }
+
+    .messages {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 480px;
+      max-height: 620px;
+      overflow: auto;
+      padding: 18px;
+    }
+
+    .empty-state {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--muted-foreground);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .message {
+      max-width: 78%;
+      border-radius: var(--radius-medium);
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.65;
+      animation: message-in .18s ease both;
+    }
+
+    .message--user {
+      align-self: flex-end;
+      border-bottom-right-radius: 3px;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 690;
+    }
+
+    .message--assistant {
+      align-self: flex-start;
+      border: 1px solid var(--border);
+      border-top-left-radius: 3px;
+      background: var(--content2);
+    }
+
+    .message--error {
+      border-color: rgba(243, 18, 96, .24);
+      background: rgba(243, 18, 96, .10);
+      color: #9f1239;
+    }
+
+    .status-pill {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0, 111, 238, .18);
+      border-radius: var(--radius-medium);
+      background: rgba(0, 111, 238, .10);
+      color: #005bc4;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 690;
+      animation: message-in .18s ease both;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(0, 111, 238, .24);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .option-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: var(--content1);
+      padding: 10px;
+      text-align: left;
+      transition: border-color .16s ease, background .16s ease;
+    }
+
+    .option-card:hover,
+    .option-card.is-selected {
+      border-color: var(--primary);
+      background: rgba(0, 111, 238, .08);
+    }
+
+    .option-card__title {
+      display: block;
+      color: var(--foreground);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .option-card__description {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .surface {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: var(--content1);
+      padding: 10px;
+    }
+
+    .surface-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .surface-title {
+      color: var(--foreground);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .surface-description {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .field {
+      display: grid;
+      gap: 5px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 720;
+    }
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+      border: 1px solid var(--field-border);
+      border-radius: var(--radius-small);
+      background: var(--field-background);
+      color: var(--foreground);
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+
+    .preview-card {
+      overflow: hidden;
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: var(--content1);
+    }
+
+    .preview-card__header {
+      display: grid;
+      gap: 4px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--divider);
+      background: var(--content2);
+      font-size: 12px;
+    }
+
+    .preview-card__body {
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .table-wrapper {
+      overflow: auto;
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: var(--content1);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .table th,
+    .table td {
+      border-bottom: 1px solid var(--divider);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: var(--content2);
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .listbox-item__description {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .screen-canvas {
+      overflow: auto;
+      min-width: 0;
+      min-height: 0;
+      background: var(--content1);
+    }
+
+    .screen-body {
+      padding: 6px;
+      min-height: 100%;
+    }
+
+    .screen-canvas .screen-body {
+      min-height: 100%;
+      overflow: visible;
+    }
+
+    .scenario-viewport .screen-body > .az-screen,
+    .screen-canvas .screen-body > .az-screen {
+      height: calc(100% + 32px) !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .scenario-viewport .screen-body > .az-screen .az-stage,
+    .screen-canvas .screen-body > .az-screen .az-stage {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      place-items: center !important;
+    }
+
+    .scenario-viewport .screen-body > .az-screen .az-phone,
+    .screen-canvas .screen-body > .az-screen .az-phone {
+      transform: scale(var(--prototype-scale, 1)) !important;
+      transform-origin: center center !important;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: var(--content2);
+      padding: 12px;
+    }
+
+    .stat-card__label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 720;
+    }
+
+    .stat-card__value {
+      margin-top: 5px;
+      color: var(--foreground);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      color: var(--foreground);
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      display: none;
+      max-width: 320px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: var(--radius-medium);
+      background: #111827;
+      color: #fff;
+      padding: 12px 14px;
+      font-size: 13px;
+      box-shadow: var(--shadow-medium);
+      z-index: 20;
+    }
+
+    .toast.is-visible {
+      display: block;
+      animation: message-in .18s ease both;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes message-in {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 880px) {
+      .app-header,
+      .card__header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .header-tools {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .tabs {
+        align-self: flex-start;
+      }
+
+      .brand-logo {
+        justify-content: flex-start;
+      }
+
+      .card__actions {
+        width: 100%;
+      }
+
+      .card__actions .button {
+        flex: 1;
+      }
+
+      .layout,
+      .screen-browser,
+      .scenario-browser {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .screen-list,
+      .scenario-list {
+        display: flex;
+        max-height: 168px;
+        overflow-x: auto;
+        overflow-y: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--divider);
+      }
+
+      .listbox-item,
+      .scenario-item {
+        min-width: 220px;
+        border-left: 0;
+        border-bottom: 0;
+        border-right: 1px solid var(--divider);
+      }
+
+      .messages {
+        min-height: 460px;
+      }
+
+      .message {
+        max-width: 92%;
+      }
+
+      .stat-grid,
+      .content-grid,
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        width: min(100vw - 20px, 1600px);
+        padding: 16px 0;
+      }
+
+      .app-title {
+        font-size: 22px;
+      }
+
+      .card__header,
+      .screen-body,
+      .messages {
+        padding: 12px;
+      }
+    }
+
+    /* Inlined 04-ux CSS */
+    /* Inline from 04-ux/screen.css */
+    :root {
+      --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --background: #f6f8fb;
+      --foreground: #111827;
+      --muted: #6b7280;
+      --caption: #8a94a6;
+      --border: #e5eaf0;
+      --content1: #ffffff;
+      --content2: #eef3f8;
+      --primary: #2f6df6;
+      --primary-weak: #e8f1ff;
+      --success: #18b981;
+      --success-weak: #def8ef;
+      --warning: #f5a524;
+      --warning-weak: #fff4db;
+      --danger: #ef4444;
+      --danger-weak: #ffe8e8;
+      --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 18px 42px rgba(15, 23, 42, 0.06);
+      --card-radius: 26px;
+      --card-padding: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .ux-screen {
+      width: min(1180px, 100%);
+      min-height: 720px;
+      margin: 0 auto;
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      position: relative;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) 318px;
+      gap: 18px;
+      min-height: 720px;
+      padding: 18px;
+      background: linear-gradient(180deg, #fbfcff 0%, #f0f4f9 100%);
+    }
+
+    .side-nav,
+    .panel,
+    .card {
+      border: 1px solid rgba(229, 234, 240, 0.82);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: var(--shadow-card);
+      border-radius: var(--card-radius);
+    }
+
+    .side-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 10px;
+    }
+
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .brand-dot {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #15b8a6);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 66px;
+      padding: 8px 6px;
+      border-radius: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .nav-item.is-active {
+      color: var(--primary);
+      background: var(--primary-weak);
+    }
+
+    .nav-dot {
+      display: none;
+    }
+
+    .side-foot {
+      margin-top: auto;
+      padding: 10px 8px;
+      border-radius: 18px;
+      background: #f0f5ff;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .side-foot strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .side-foot span {
+      display: none;
+    }
+
+    .app-main {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .screen-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 36px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .top-actions,
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      min-height: 44px;
+      border: 0;
+      border-radius: 14px;
+      padding: 0 16px;
+      background: var(--content2);
+      color: var(--foreground);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .button--primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .button--dark {
+      background: #111827;
+      color: #fff;
+    }
+
+    .button--ghost {
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .button--soft {
+      background: var(--primary-weak);
+      color: var(--primary);
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 14px;
+      background: var(--content1);
+      color: var(--muted);
+      box-shadow: inset 0 0 0 1px var(--border);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: 16px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      padding: var(--card-padding);
+    }
+
+    .card--hero {
+      min-height: 294px;
+      background:
+        radial-gradient(circle at 80% 22%, rgba(24, 185, 129, .14), transparent 34%),
+        linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .amount {
+      margin: 8px 0 6px;
+      font-size: clamp(34px, 3.2vw, 44px);
+      line-height: 1.12;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--success-weak);
+      color: #0a7f59;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .delta--danger {
+      background: var(--danger-weak);
+      color: var(--danger);
+    }
+
+    .mini-chart {
+      height: 118px;
+      margin-top: 22px;
+      display: flex;
+      align-items: end;
+      gap: 12px;
+      border-bottom: 1px solid rgba(229, 234, 240, .9);
+    }
+
+    .bar {
+      flex: 1;
+      min-width: 18px;
+      border-radius: 999px 999px 4px 4px;
+      background: linear-gradient(180deg, #20c997 0%, rgba(32, 201, 151, .12) 100%);
+    }
+
+    .bar:nth-child(2) { height: 66%; }
+    .bar:nth-child(3) { height: 52%; }
+    .bar:nth-child(4) { height: 82%; }
+    .bar:nth-child(5) { height: 72%; }
+    .bar:nth-child(6) { height: 92%; }
+    .bar:nth-child(7) { height: 64%; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      min-height: 138px;
+      padding: 18px;
+      border-radius: 24px;
+      background: var(--content1);
+      border: 1px solid var(--border);
+    }
+
+    .metric-value {
+      margin-top: 12px;
+      font-size: 26px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 900;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+
+    .tab {
+      position: relative;
+      padding: 0 0 12px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .tab.is-active {
+      color: var(--foreground);
+    }
+
+    .tab.is-active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--foreground);
+    }
+
+    .asset-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .asset-row {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 10px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(229, 234, 240, .72);
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .asset-row:last-child {
+      border-bottom: 0;
+    }
+
+    .asset-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: #111827;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .asset-icon--blue { background: #2f6df6; }
+    .asset-icon--mint { background: #18b981; }
+    .asset-icon--red { background: #ef4444; }
+    .asset-name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .asset-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .asset-value {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .ai-panel {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03), 0 12px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .ai-orb {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #2f6df6, #18b981);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 16px 30px rgba(47, 109, 246, .24);
+    }
+
+    .status-card {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .status-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 42px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .status-line:last-child {
+      border-bottom: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--content2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .badge--success {
+      background: var(--success-weak);
+      color: #087f5b;
+    }
+
+    .badge--warning {
+      background: var(--warning-weak);
+      color: #935f00;
+    }
+
+    .badge--danger {
+      background: var(--danger-weak);
+      color: var(--danger);
+    }
+
+    .floating-ai {
+      position: absolute;
+      right: 28px;
+      bottom: 28px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      padding: 0 18px;
+      color: #fff;
+      background: #111827;
+      box-shadow: 0 16px 34px rgba(17, 24, 39, .24);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .chat-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
+      min-height: 720px;
+      padding: 18px;
+      background: linear-gradient(180deg, #fbfcff, #f0f4f9);
+    }
+
+    .chat-area {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      border-radius: var(--card-radius);
+      background: var(--content1);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      padding: 20px;
+    }
+
+    .chat-log {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .bubble {
+      max-width: 78%;
+      padding: 14px 16px;
+      border-radius: 18px;
+      color: var(--foreground);
+      background: var(--content2);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .bubble--mine {
+      justify-self: end;
+      color: #fff;
+      background: var(--primary);
+      border-bottom-right-radius: 6px;
+    }
+
+    .bubble--ai {
+      justify-self: start;
+      border-bottom-left-radius: 6px;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-height: 60px;
+      padding: 8px;
+      border-radius: 20px;
+      background: var(--content2);
+    }
+
+    .chat-input input {
+      flex: 1;
+      min-width: 0;
+      height: 44px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--foreground);
+      padding: 0 10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .confirm-panel {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      padding: 18px;
+      border-radius: var(--card-radius);
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .parsed-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #f9fbff;
+    }
+
+    .kv-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .kv {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .kv strong {
+      color: var(--foreground);
+      text-align: right;
+      font-weight: 900;
+    }
+
+    .detail-shell {
+      min-height: 720px;
+      padding: 18px;
+      background: linear-gradient(180deg, #fbfcff, #f0f4f9);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) 320px;
+      gap: 16px;
+    }
+
+    .donut {
+      width: 180px;
+      height: 180px;
+      margin: 12px auto 18px;
+      border-radius: 50%;
+      background: conic-gradient(#2f6df6 0 42%, #18b981 42% 64%, #6c5ce7 64% 80%, #ef4444 80% 91%, #f5a524 91% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 38px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-ring {
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 8px auto 18px;
+      background: conic-gradient(var(--success) 0 82%, #e8edf3 82% 100%);
+      position: relative;
+    }
+
+    .score-ring::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-ring strong {
+      position: relative;
+      z-index: 1;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .legend {
+      display: grid;
+      gap: 9px;
+    }
+
+    .legend-row {
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 99px;
+      background: var(--primary);
+    }
+
+    .admin-log {
+      display: grid;
+      gap: 10px;
+    }
+
+    .log-item {
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--content2);
+    }
+
+    .log-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .log-item span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 960px) {
+      .app-shell,
+      .chat-shell,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-nav {
+        display: none;
+      }
+
+      .app-shell,
+      .chat-shell,
+      .detail-shell {
+        padding: 12px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+      }
+
+      .grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-panel {
+        position: static;
+      }
+
+      .floating-ai {
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .bubble {
+        max-width: 92%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="header-main">
+        <h1 class="app-title" id="projectTitle">프로젝트명 UX 시안</h1>
+        <p class="app-summary" id="projectSummary">다음 시안은 시나리오, 화면을 간단히 볼 수 있는 샘플이며, 확정된 최종 시안이 아닙니다. 개발 착수전 사전 협의를 통해 더 좋은 퀄리티의 시안을 제안드립니다.</p>
+        <div class="tabs" role="tablist" aria-label="UX 보기 방식">
+          <button class="tab mode-tab is-selected" type="button" data-mode="flow" role="tab" aria-selected="true">시나리오</button>
+          <button class="tab mode-tab" type="button" data-mode="screens" role="tab" aria-selected="false">화면</button>
+        </div>
+      </div>
+      <div class="header-tools">
+        <a class="brand-logo" href="https://www.bigshift.kr/" target="_blank" rel="noopener" aria-label="빅시프트 홈페이지">
+          <img src="https://www.bigshift.kr/_next/image?q=75&amp;url=%2FcompanyLogoHorizontal.png&amp;w=3840" alt="Bigshift">
+        </a>
+      </div>
+    </header>
+
+    <noscript>
+      <div class="card" style="padding:16px;margin-bottom:18px;">
+        이 UX 시안은 버튼 실행과 화면 전환을 위해 JavaScript가 필요합니다.
+      </div>
+    </noscript>
+
+    <section class="scenario-browser mode-panel is-active" id="flowPanel" aria-label="시나리오 UX">
+      <nav class="scenario-list" id="scenarioList" aria-label="시나리오 목록"></nav>
+      <main class="scenario-stage" id="scenarioStage">
+        <div class="scenario-viewport" id="scenarioViewport"></div>
+        <div class="scenario-cursor" id="scenarioCursor" aria-hidden="true"></div>
+      </main>
+    </section>
+
+    <section class="screen-browser mode-panel" id="screensPanel" aria-label="화면 UX">
+      <nav class="screen-list" id="screenList" aria-label="화면 목록"></nav>
+      <main class="screen-canvas" id="screenCanvas"></main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /*
+      프로젝트별 수정 영역:
+      - 상단 헤더, BigShift 로고, 시나리오/화면 탭, 왼쪽 사이드바와 오른쪽 UX 영역은 공통 고정 프레임입니다.
+      - UX_DATA만 바꾸면 HeroUI-style static prototype이 동작합니다.
+      - scripts/build-ux.mjs는 04-ux/*.html을 읽어 UX_DATA.screens[].html에 주입합니다.
+      - scripts/build-ux.mjs는 04-ux/scenarios.json이 있으면 UX_DATA.scenarios에 주입합니다.
+      - 실제 HeroUI React 컴포넌트는 사용하지 않습니다. 이 파일은 빌드 없이 열리는 단일 HTML 산출물입니다.
+      - 기능 흐름은 scenarios.json의 자동 재생 시나리오와 각 화면 내부 상태로 표현합니다.
+    */
+    const UX_DATA = {
+      "project": {
+            "title": "AI 자산관리 UX 시안",
+            "summary": "다음 시안은 시나리오, 화면을 간단히 볼 수 있는 샘플이며, 확정된 최종 시안이 아닙니다. 개발 착수전 사전 협의를 통해 더 좋은 퀄리티의 시안을 제안드립니다."
+      },
+      "screens": [
+            {
+                  "id": "dashboard",
+                  "title": "포트폴리오 대시보드",
+                  "purpose": "핵심 자산 상태와 AI 입력 진입을 확인합니다.",
+                  "status": "사용자 홈",
+                  "actions": [
+                        "AI 입력 시작",
+                        "자산 상세 보기",
+                        "새로고침"
+                  ],
+                  "html": "<section class=\"ux-screen\" aria-label=\"포트폴리오 대시보드\">\n  <div class=\"app-shell\">\n    <aside class=\"side-nav\" aria-label=\"주요 메뉴\">\n      <div class=\"brand-mark\"><span class=\"brand-dot\">A</span><span>AI 자산관리</span></div>\n      <nav class=\"nav-list\">\n        <div class=\"nav-item is-active\"><span>홈</span><span class=\"nav-dot\"></span></div>\n        <div class=\"nav-item\"><span>AI 입력</span></div>\n        <div class=\"nav-item\"><span>상세</span></div>\n        <div class=\"nav-item\"><span>상태</span></div>\n      </nav>\n      <div class=\"side-foot\">\n        <strong>5분 전 갱신</strong>\n        <span>주요 종목 가격과 평가 결과가 5분 전에 갱신되었습니다.</span>\n      </div>\n    </aside>\n\n    <main class=\"app-main\">\n      <header class=\"topbar\">\n        <div>\n          <p class=\"eyebrow\">PORTFOLIO</p>\n          <h2 class=\"screen-title\">김민준님의 포트폴리오</h2>\n        </div>\n        <div class=\"top-actions\">\n          <span class=\"badge badge--success\">시세 정상</span>\n          <button class=\"icon-button\" type=\"button\" aria-label=\"새로고침\" data-toast=\"최신 데이터로 갱신했어요.\">↻</button>\n        </div>\n      </header>\n\n      <div class=\"grid\">\n        <section class=\"card card--hero\">\n          <div class=\"card-label\">총 평가금액</div>\n          <div class=\"amount\">48,200,400원</div>\n          <span class=\"delta\">오늘 +872,000원 · +1.8%</span>\n          <div class=\"mini-chart\" aria-label=\"최근 7개월 자산 흐름\">\n            <div class=\"bar\" style=\"height: 58%\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n            <div class=\"bar\"></div>\n          </div>\n        </section>\n\n        <section class=\"stack\">\n          <div class=\"metric-grid\">\n            <div class=\"metric-card\">\n              <div class=\"card-label\">가치 평가 점수</div>\n              <div class=\"metric-value\">82점</div>\n              <span class=\"badge badge--success\">안정 구간</span>\n            </div>\n            <div class=\"metric-card\">\n              <div class=\"card-label\">보유 종목</div>\n              <div class=\"metric-value\">8개</div>\n              <span class=\"badge\">미국 주식 72%</span>\n            </div>\n          </div>\n          <div class=\"card\">\n            <div class=\"section-head\">\n              <h3 class=\"section-title\">AI 입력</h3>\n              <span class=\"badge badge--warning\">확인 후 저장</span>\n            </div>\n            <p class=\"asset-meta\">채팅으로 보유 자산을 말하면 종목과 수량을 구조화해 보여줍니다.</p>\n            <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\">AI로 자산 추가</button>\n          </div>\n        </section>\n      </div>\n\n      <section class=\"card\" style=\"margin-top: 16px;\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">보유 자산</h3>\n          <div class=\"tabs\" role=\"tablist\" aria-label=\"자산 필터\">\n            <button class=\"tab is-active\" type=\"button\">전체</button>\n            <button class=\"tab\" type=\"button\">주식</button>\n            <button class=\"tab\" type=\"button\">검수 필요</button>\n          </div>\n        </div>\n        <div class=\"asset-list\">\n          <button class=\"asset-row\" type=\"button\" data-scenario-target=\"dashboard-asset-detail\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon\">AP</span>\n            <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">10주 · 평가 안정</span></span>\n            <span class=\"asset-value\">28,915,000원<br><span class=\"asset-meta\">+2.1%</span></span>\n          </button>\n          <button class=\"asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon asset-icon--red\">TS</span>\n            <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">3주 · 변동성 높음</span></span>\n            <span class=\"asset-value\">4,908,000원<br><span class=\"asset-meta\">-0.6%</span></span>\n          </button>\n          <button class=\"asset-row\" type=\"button\" data-nav-screen=\"asset-detail\" data-toast=\"자산 상세 화면으로 이동합니다.\">\n            <span class=\"asset-icon asset-icon--blue\">SP</span>\n            <span><span class=\"asset-name\">S&P 500 ETF</span><span class=\"asset-meta\">장기 분산</span></span>\n            <span class=\"asset-value\">10,628,000원<br><span class=\"asset-meta\">+0.8%</span></span>\n          </button>\n        </div>\n      </section>\n    </main>\n\n    <aside class=\"panel ai-panel\" aria-label=\"AI 자산 코치\">\n      <div class=\"ai-orb\">AI</div>\n      <h3 class=\"section-title\" style=\"margin-top: 16px;\">AI 자산 코치</h3>\n      <div class=\"status-card\">\n        <div class=\"status-line\"><span class=\"card-label\">입력 해석</span><span class=\"badge badge--success\">정상</span></div>\n        <div class=\"status-line\"><span class=\"card-label\">시세 반영</span><span class=\"badge badge--success\">5분 전</span></div>\n        <div class=\"status-line\"><span class=\"card-label\">확인 대기</span><span class=\"badge badge--warning\">2건</span></div>\n      </div>\n      <div class=\"card\" style=\"margin-top: 16px; box-shadow: none;\">\n        <div class=\"card-label\">최근 AI 입력</div>\n        <p class=\"asset-meta\">\"애플 10주와 테슬라 3주 보유 중이야\" 입력이 구조화되어 저장 대기 중입니다.</p>\n      </div>\n    </aside>\n  </div>\n  <button class=\"floating-ai\" type=\"button\" data-scenario-target=\"dashboard-ai-start\" data-nav-screen=\"ai-chat\" data-toast=\"AI 입력 화면으로 이동합니다.\"><span>AI</span><span>자산 입력</span></button>\n</section>"
+            },
+            {
+                  "id": "ai-chat",
+                  "title": "AI 자산 입력",
+                  "purpose": "자연어 입력을 구조화하고 저장 전 확인합니다.",
+                  "status": "AI 입력",
+                  "actions": [
+                        "분석하기",
+                        "포트폴리오 반영"
+                  ],
+                  "html": "<section class=\"ux-screen\" aria-label=\"AI 자산 입력\">\n  <div class=\"chat-shell\">\n    <main class=\"chat-area\">\n      <header class=\"topbar\" style=\"margin-bottom: 0;\">\n        <div>\n          <p class=\"eyebrow\">AI ASSET INPUT</p>\n          <h2 class=\"screen-title\">채팅으로 자산 추가</h2>\n        </div>\n        <span class=\"badge badge--warning\">저장 전 확인</span>\n      </header>\n\n      <div class=\"chat-log\" aria-label=\"AI 자산 입력 대화\">\n        <div class=\"bubble bubble--mine\">애플 10주와 테슬라 3주 보유 중이야. 포트폴리오에 넣어줘.</div>\n        <div class=\"bubble bubble--ai\">입력하신 문장에서 보유 종목 2개를 찾았습니다. 저장 전에 종목과 수량을 확인해주세요.</div>\n        <div class=\"parsed-card\">\n          <div class=\"section-head\">\n            <h3 class=\"section-title\">해석 결과</h3>\n            <span class=\"badge badge--success\">2개 종목</span>\n          </div>\n          <div class=\"asset-list\">\n            <div class=\"asset-row\">\n              <span class=\"asset-icon\">AP</span>\n              <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">보유 수량 10주</span></span>\n              <span class=\"asset-value\">28,915,000원</span>\n            </div>\n            <div class=\"asset-row\">\n              <span class=\"asset-icon asset-icon--red\">TS</span>\n              <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">보유 수량 3주</span></span>\n              <span class=\"asset-value\">4,908,000원</span>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"chat-input\">\n        <input value=\"엔비디아 2주도 추가해줘\" aria-label=\"자산 입력 문장\" />\n        <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"chat-analyze\" data-toast=\"입력 문장을 구조화했어요.\">분석하기</button>\n      </div>\n    </main>\n\n    <aside class=\"confirm-panel\" aria-label=\"저장 전 확인\">\n      <div>\n        <p class=\"eyebrow\">CONFIRM</p>\n        <h3 class=\"screen-title\" style=\"font-size: 24px; line-height: 32px;\">등록 전 확인</h3>\n      </div>\n\n      <div class=\"parsed-card\">\n        <div class=\"kv-list\">\n          <div class=\"kv\"><span>추가 평가금액</span><strong>33,823,000원</strong></div>\n          <div class=\"kv\"><span>포트폴리오 비중 변화</span><strong>미국 주식 72% → 78%</strong></div>\n          <div class=\"kv\"><span>가치 평가 영향</span><strong>82점 유지</strong></div>\n          <div class=\"kv\"><span>처리 방식</span><strong>보유 자산 등록</strong></div>\n        </div>\n      </div>\n\n      <div class=\"card\" style=\"box-shadow: none;\">\n        <div class=\"card-label\">저장 전 안내</div>\n        <p class=\"asset-meta\">AI 해석 결과는 사용자가 확인한 뒤에만 포트폴리오에 반영됩니다. 종목명이 다르면 다시 입력할 수 있습니다.</p>\n      </div>\n\n      <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"chat-confirm-save\" data-nav-screen=\"asset-detail\" data-toast=\"포트폴리오에 반영했어요.\">포트폴리오에 반영</button>\n      <button class=\"button button--ghost\" type=\"button\" data-toast=\"입력창으로 돌아갑니다.\">다시 입력</button>\n    </aside>\n  </div>\n</section>"
+            },
+            {
+                  "id": "asset-detail",
+                  "title": "자산/가치 평가 상세",
+                  "purpose": "자산 구성, 평가 결과, 운영 상태를 확인합니다.",
+                  "status": "상세 분석",
+                  "actions": [
+                        "평가 다시 계산",
+                        "관리자 검수 보기"
+                  ],
+                  "html": "<section class=\"ux-screen\" aria-label=\"자산과 가치 평가 상세\">\n  <div class=\"detail-shell\">\n    <header class=\"topbar\">\n      <div>\n        <p class=\"eyebrow\">ASSET DETAIL</p>\n        <h2 class=\"screen-title\">포트폴리오 상세 분석</h2>\n      </div>\n      <div class=\"top-actions\">\n        <button class=\"button button--soft\" type=\"button\" data-scenario-target=\"detail-back-dashboard\" data-nav-screen=\"dashboard\" data-toast=\"대시보드로 이동합니다.\">대시보드</button>\n        <button class=\"button button--primary\" type=\"button\" data-scenario-target=\"detail-recalculate\" data-toast=\"가치 평가를 다시 계산했어요.\">평가 다시 계산</button>\n      </div>\n    </header>\n\n    <div class=\"detail-grid\">\n      <section class=\"card\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">자산 구성</h3>\n          <span class=\"badge badge--success\">분산 양호</span>\n        </div>\n        <div class=\"donut\" aria-label=\"자산 구성 도넛 차트\"></div>\n        <div class=\"legend\">\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#2f6df6\"></span><span>미국 대형주</span><strong>42%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#18b981\"></span><span>지수 ETF</span><strong>22%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#6c5ce7\"></span><span>성장주</span><strong>16%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#ef4444\"></span><span>변동성 종목</span><strong>11%</strong></div>\n          <div class=\"legend-row\"><span class=\"legend-dot\" style=\"background:#f5a524\"></span><span>현금성</span><strong>9%</strong></div>\n        </div>\n      </section>\n\n      <section class=\"card\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">가치 평가 결과</h3>\n          <span class=\"badge badge--warning\">로직 v1</span>\n        </div>\n        <div class=\"score-ring\"><strong>82</strong></div>\n        <div class=\"kv-list\">\n          <div class=\"kv\"><span>성장성</span><strong>높음</strong></div>\n          <div class=\"kv\"><span>변동성</span><strong>관리 필요</strong></div>\n          <div class=\"kv\"><span>분산도</span><strong>양호</strong></div>\n          <div class=\"kv\"><span>마지막 계산</span><strong>오늘 15:18</strong></div>\n        </div>\n        <div class=\"card\" style=\"margin-top: 16px; box-shadow: none; background: #f9fbff;\">\n          <div class=\"card-label\">해석</div>\n          <p class=\"asset-meta\">대형주와 지수형 자산 비중이 높아 안정 구간입니다. 일부 변동성 종목은 비중 추적 대상으로 표시됩니다.</p>\n        </div>\n      </section>\n\n      <aside class=\"panel\" aria-label=\"운영 확인\">\n        <div class=\"section-head\">\n          <h3 class=\"section-title\">운영 확인</h3>\n          <span class=\"badge badge--warning\">2건</span>\n        </div>\n        <div class=\"admin-log\">\n          <div class=\"log-item\">\n            <strong>종목 매칭 검수</strong>\n            <span>사용자 입력 중 유사 종목명이 발견되어 저장 전 확인 상태로 유지됩니다.</span>\n          </div>\n          <div class=\"log-item\">\n            <strong>가격 갱신 지연</strong>\n            <span>일부 종목의 시세 갱신이 지연되어 마지막 정상 가격을 표시합니다.</span>\n          </div>\n          <div class=\"log-item\">\n            <strong>평가 로직 정상</strong>\n            <span>최근 계산 결과가 기준 범위 안에서 재현되었습니다.</span>\n          </div>\n        </div>\n        <button class=\"button button--dark\" style=\"width: 100%; margin-top: 16px;\" type=\"button\" data-scenario-target=\"detail-admin-review\" data-toast=\"검수 대상을 표시했어요.\">관리자 검수 보기</button>\n      </aside>\n    </div>\n\n    <section class=\"card\" style=\"margin-top: 16px;\">\n      <div class=\"section-head\">\n        <h3 class=\"section-title\">보유 종목 상세</h3>\n        <span class=\"badge\">8개 종목</span>\n      </div>\n      <div class=\"asset-list\">\n        <div class=\"asset-row\">\n          <span class=\"asset-icon\">AP</span>\n          <span><span class=\"asset-name\">Apple</span><span class=\"asset-meta\">대형주 · 핵심 보유</span></span>\n          <span class=\"asset-value\">28,915,000원<br><span class=\"asset-meta\">비중 42%</span></span>\n        </div>\n        <div class=\"asset-row\">\n          <span class=\"asset-icon asset-icon--blue\">SP</span>\n          <span><span class=\"asset-name\">S&P 500 ETF</span><span class=\"asset-meta\">지수형 · 장기 분산</span></span>\n          <span class=\"asset-value\">10,628,000원<br><span class=\"asset-meta\">비중 22%</span></span>\n        </div>\n        <div class=\"asset-row\">\n          <span class=\"asset-icon asset-icon--red\">TS</span>\n          <span><span class=\"asset-name\">Tesla</span><span class=\"asset-meta\">변동성 추적 대상</span></span>\n          <span class=\"asset-value\">4,908,000원<br><span class=\"asset-meta\">비중 11%</span></span>\n        </div>\n      </div>\n    </section>\n  </div>\n</section>"
+            }
+      ],
+      "scenarios": [
+            {
+                  "id": "ai-register-flow",
+                  "title": "AI로 자산 등록",
+                  "purpose": "대시보드에서 AI 입력을 열고 자연어 입력 결과를 확인해 포트폴리오에 반영합니다.",
+                  "flow": "대시보드 → AI 입력 → 자산 상세",
+                  "steps": [
+                        {
+                              "screenId": "dashboard",
+                              "target": "dashboard-ai-start",
+                              "label": "AI 자산 입력 시작",
+                              "toast": "AI 입력 화면으로 이동합니다."
+                        },
+                        {
+                              "screenId": "ai-chat",
+                              "target": "chat-analyze",
+                              "label": "입력 문장 구조화",
+                              "toast": "입력 문장을 구조화했어요."
+                        },
+                        {
+                              "screenId": "ai-chat",
+                              "target": "chat-confirm-save",
+                              "label": "포트폴리오에 반영",
+                              "toast": "포트폴리오에 반영했어요."
+                        },
+                        {
+                              "screenId": "asset-detail",
+                              "label": "등록 결과와 평가 상태 확인"
+                        }
+                  ]
+            },
+            {
+                  "id": "portfolio-review-flow",
+                  "title": "포트폴리오 검수",
+                  "purpose": "대시보드에서 자산 상세로 이동해 평가 결과와 운영 검수 상태를 확인합니다.",
+                  "flow": "대시보드 → 자산 상세 → 운영 검수",
+                  "steps": [
+                        {
+                              "screenId": "dashboard",
+                              "target": "dashboard-asset-detail",
+                              "label": "보유 자산 상세 열기",
+                              "toast": "자산 상세 화면으로 이동합니다."
+                        },
+                        {
+                              "screenId": "asset-detail",
+                              "target": "detail-recalculate",
+                              "label": "가치 평가 다시 계산",
+                              "toast": "가치 평가를 다시 계산했어요."
+                        },
+                        {
+                              "screenId": "asset-detail",
+                              "target": "detail-admin-review",
+                              "label": "운영 검수 대상 확인",
+                              "toast": "검수 대상을 표시했어요."
+                        }
+                  ]
+            }
+      ]
+};
+
+    const state = {
+      mode: 'flow',
+      screenId: UX_DATA.screens[0]?.id || null,
+      scenarioId: UX_DATA.scenarios?.[0]?.id || null,
+      scenarioScreenId: UX_DATA.screens[0]?.id || null,
+      scenarioRunToken: 0
+    };
+
+    const $ = (selector, context = document) => context.querySelector(selector);
+    const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+
+    function setText(selector, value) {
+      const element = $(selector);
+      if (element) element.textContent = value;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function scenarioFlowHtml(flow, steps = []) {
+      const fallback = `${steps.length}단계 흐름`;
+      const parts = String(flow || fallback)
+        .split(/\s*(?:->|→)\s*/g)
+        .map((part) => part.trim())
+        .filter(Boolean);
+
+      if (parts.length === 0) {
+        return `<span class="scenario-flow-chip">${escapeHtml(fallback)}</span>`;
+      }
+
+      return parts.map((part, index) => {
+        const chip = `<span class="scenario-flow-chip">${escapeHtml(part)}</span>`;
+        if (index === 0) return chip;
+        return `<span class="scenario-flow-arrow" aria-hidden="true">→</span>${chip}`;
+      }).join('');
+    }
+
+    function initProject() {
+      $('#projectTitle').textContent = UX_DATA.project.title;
+      $('#projectSummary').textContent = UX_DATA.project.summary;
+      document.title = UX_DATA.project.title;
+    }
+
+    function initModes() {
+      $$('.mode-tab').forEach((tab) => {
+        tab.addEventListener('click', () => setMode(tab.dataset.mode));
+      });
+      setMode(state.mode);
+    }
+
+    function setMode(mode) {
+      state.mode = mode === 'flow' ? 'flow' : 'screens';
+
+      $$('.mode-tab').forEach((tab) => {
+        const selected = tab.dataset.mode === state.mode;
+        tab.classList.toggle('is-selected', selected);
+        tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+
+      $('#flowPanel').classList.toggle('is-active', state.mode === 'flow');
+      $('#screensPanel').classList.toggle('is-active', state.mode === 'screens');
+
+      window.requestAnimationFrame(() => {
+        scaleEmbeddedScreens(state.mode === 'flow' ? $('#scenarioViewport') : $('#screenCanvas'));
+      });
+    }
+
+    function getScreenById(id) {
+      return UX_DATA.screens.find((screen) => screen.id === id) || null;
+    }
+
+    function getScenarioById(id) {
+      return UX_DATA.scenarios?.find((scenario) => scenario.id === id) || UX_DATA.scenarios?.[0] || null;
+    }
+
+    function tableHtml(table) {
+      return `
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>${table.columns.map((column) => `<th>${escapeHtml(column)}</th>`).join('')}</tr>
+            </thead>
+            <tbody>
+              ${table.rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>`;
+    }
+
+    function bindToastButtons(scope) {
+      $$('[data-toast]', scope).forEach((button) => {
+        if (button.dataset.navScreen) return;
+        button.addEventListener('click', (event) => {
+          if (button.matches('a[href="#"]')) event.preventDefault();
+          showToast(button.dataset.toast);
+        });
+      });
+    }
+
+    function bindScreenNavigation(scope, options = {}) {
+      $$('[data-nav-screen]', scope).forEach((item) => {
+        item.addEventListener('click', (event) => {
+          event.preventDefault();
+          const nextScreen = getScreenById(item.dataset.navScreen);
+          if (!nextScreen) {
+            showToast(`화면을 찾을 수 없습니다: ${item.dataset.navScreen}`);
+            return;
+          }
+          if (item.dataset.toast) showToast(item.dataset.toast);
+
+          if (options.scenario) {
+            renderScenarioScreen(nextScreen);
+            updateScenarioStep(`화면 전환: ${nextScreen.title}`);
+          } else {
+            selectScreen(nextScreen.id);
+          }
+        });
+      });
+    }
+
+    function showToast(message) {
+      const toast = $('#toast');
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove('is-visible'), 1800);
+    }
+
+    function initScreens() {
+      const list = $('#screenList');
+      list.innerHTML = UX_DATA.screens.map((screen) => `
+        <div class="listbox-item screen-item" role="option" tabindex="0" data-id="${escapeHtml(screen.id)}" aria-selected="false">
+          <span class="listbox-item__title">${escapeHtml(screen.title)}</span>
+          <span class="listbox-item__description">${escapeHtml(screen.purpose)}</span>
+        </div>
+      `).join('');
+
+      list.addEventListener('click', (event) => {
+        const item = event.target.closest('.screen-item');
+        if (!item) return;
+        selectScreen(item.dataset.id);
+      });
+
+      selectScreen(state.screenId);
+    }
+
+    function getScreen() {
+      return getScreenById(state.screenId);
+    }
+
+    function selectScreen(id) {
+      state.screenId = id;
+      const screen = getScreenById(id);
+      if (!screen) {
+        renderMissingScreen('#screenCanvas', id);
+        return;
+      }
+      $$('.screen-item').forEach((item) => {
+        const selected = item.dataset.id === screen.id;
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      renderScreen(screen);
+    }
+
+    function screenContentHtml(screen) {
+      return `
+        <div class="screen-body">
+          ${screen.html || ''}
+          ${screen.stats ? statGridHtml(screen.stats) : ''}
+          ${screen.table ? tableHtml(screen.table) : ''}
+          ${screen.form ? screenFormHtml(screen.form) : ''}
+          ${screen.panels ? panelGridHtml(screen.panels) : ''}
+        </div>`;
+    }
+
+    function renderScreen(screen) {
+      const canvas = $('#screenCanvas');
+      if (!screen) {
+        renderMissingScreen('#screenCanvas', state.screenId);
+        return;
+      }
+      canvas.innerHTML = screenContentHtml(screen);
+      scaleEmbeddedScreens(canvas);
+      bindToastButtons(canvas);
+      bindScreenNavigation(canvas);
+    }
+
+    function renderMissingScreen(selector, id) {
+      const viewport = $(selector);
+      viewport.innerHTML = `<div class="empty-state">화면을 찾을 수 없습니다: ${escapeHtml(id || 'unknown')}</div>`;
+    }
+
+    function statGridHtml(stats) {
+      return `<div class="stat-grid">${stats.map((stat) => `
+        <div class="stat-card">
+          <div class="stat-card__label">${escapeHtml(stat.label)}</div>
+          <div class="stat-card__value">${escapeHtml(stat.value)}</div>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    function screenFormHtml(fields) {
+      return `
+        <div class="stack">
+          ${fields.map((field) => `
+            <div class="field">
+              <label class="label">${escapeHtml(field.label)}</label>
+              ${field.multiline
+                ? `<textarea class="textarea">${escapeHtml(field.value)}</textarea>`
+                : `<input class="input" value="${escapeHtml(field.value)}">`}
+            </div>
+          `).join('')}
+        </div>`;
+    }
+
+    function panelGridHtml(panels) {
+      return `<div class="content-grid">${panels.map((panel) => `
+        <section class="surface">
+          <h3 class="section-title">${escapeHtml(panel.title)}</h3>
+          ${panel.type === 'list' ? `<div class="stack">${panel.items.map((item) => `
+            <div class="surface">
+              <div class="surface-title">${escapeHtml(item.title)}</div>
+              <div class="surface-description">${escapeHtml(item.meta)}</div>
+            </div>
+          `).join('')}</div>` : ''}
+          ${panel.type === 'actions' ? `<div class="action-row">${panel.actions.map((action) => `
+            <button class="button button--bordered button--sm" type="button" data-toast="${escapeHtml(action)} 동작을 확인합니다.">${escapeHtml(action)}</button>
+          `).join('')}</div>` : ''}
+        </section>
+      `).join('')}</div>`;
+    }
+
+    function initScenarios() {
+      const list = $('#scenarioList');
+      const scenarios = UX_DATA.scenarios || [];
+
+      if (scenarios.length === 0) {
+        list.innerHTML = '<div class="empty-state">등록된 시나리오가 없습니다.</div>';
+        setText('#scenarioTitle', '시나리오 없음');
+        setText('#scenarioStep', '화면 탭에서 개별 화면을 확인합니다.');
+        setText('#scenarioStatus', '없음');
+        renderScenarioScreen(getScreenById(state.scenarioScreenId), state.scenarioScreenId);
+        return;
+      }
+
+      list.innerHTML = scenarios.map((scenario) => `
+        <div class="scenario-item" role="option" tabindex="0" data-id="${escapeHtml(scenario.id)}" aria-selected="false">
+          <div>
+            <span class="scenario-item__title">${escapeHtml(scenario.title)}</span>
+            <span class="scenario-item__description">${escapeHtml(scenario.purpose || '')}</span>
+          </div>
+          <span class="scenario-item__flow">${scenarioFlowHtml(scenario.flow, scenario.steps || [])}</span>
+          <button class="button button--solid button--primary button--sm scenario-run" type="button" data-id="${escapeHtml(scenario.id)}">실행 ▶</button>
+        </div>
+      `).join('');
+
+      list.addEventListener('click', (event) => {
+        const runButton = event.target.closest('.scenario-run');
+        const item = event.target.closest('.scenario-item');
+        if (!item) return;
+        if (runButton) {
+          runScenario(runButton.dataset.id);
+          return;
+        }
+        selectScenario(item.dataset.id);
+      });
+
+      list.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const item = event.target.closest('.scenario-item');
+        if (!item) return;
+        event.preventDefault();
+        selectScenario(item.dataset.id);
+      });
+
+      selectScenario(state.scenarioId);
+    }
+
+    function selectScenario(id) {
+      state.scenarioRunToken += 1;
+      state.scenarioId = id;
+      const scenario = getScenarioById(id);
+      if (!scenario) return;
+
+      $$('.scenario-item').forEach((item) => {
+        const selected = item.dataset.id === scenario.id;
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+
+      setText('#scenarioTitle', scenario.title);
+      setText('#scenarioStatus', '대기');
+      updateScenarioStep(scenario.purpose || '실행 버튼을 누르면 흐름을 재생합니다.');
+      showScenarioCursor(false);
+
+      const firstStep = scenario.steps?.[0] || {};
+      const firstScreenId = firstStep.screenId || state.scenarioScreenId;
+      renderScenarioScreen(getScreenById(firstScreenId), firstScreenId);
+    }
+
+    function renderScenarioScreen(screen, missingId = state.scenarioScreenId) {
+      const viewport = $('#scenarioViewport');
+      if (!screen) {
+        renderMissingScreen('#scenarioViewport', missingId);
+        return;
+      }
+      state.scenarioScreenId = screen.id;
+      viewport.innerHTML = screenContentHtml(screen);
+      viewport.scrollTop = 0;
+      scaleEmbeddedScreens(viewport);
+      bindToastButtons(viewport);
+      bindScreenNavigation(viewport, { scenario: true });
+    }
+
+    function getScenarioRoot() {
+      return $('#scenarioViewport .rental-screen');
+    }
+
+    function scrollThreadToBottom(root) {
+      const thread = $('[data-chatbot-thread]', root) || $('.thread-scroll', root);
+      if (!thread) return;
+      thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
+    }
+
+    async function typeTextInto(element, value, token, speed = 16) {
+      if (!element) return true;
+
+      const text = String(value || '');
+      if (element.matches('input, textarea')) {
+        element.value = '';
+      } else {
+        element.textContent = '';
+      }
+      element.classList.add('is-typing');
+
+      for (const character of text) {
+        if (token !== state.scenarioRunToken) return false;
+        if (element.matches('input, textarea')) {
+          element.value += character;
+        } else {
+          element.textContent += character;
+        }
+        if (!(await scenarioSleep(speed, token))) return false;
+      }
+
+      element.classList.remove('is-typing');
+      return true;
+    }
+
+    async function applyScenarioAction(action, step, token) {
+      if (!action) return true;
+      if (Array.isArray(action)) {
+        for (const item of action) {
+          if (!(await applyScenarioAction(item, step, token))) return false;
+        }
+        return true;
+      }
+
+      const root = getScenarioRoot();
+      if (!root) return true;
+
+      if (action === 'chatbot-reset') {
+        root.classList.add('is-chatbot-awaiting-question');
+        root.classList.remove('is-chatbot-loading', 'is-chatbot-answered');
+        const composer = $('[data-chatbot-composer-text]', root);
+        const question = $('[data-chatbot-question-text]', root);
+        if (composer) {
+          composer.textContent = '';
+          composer.classList.remove('is-typing');
+        }
+        if (question) question.textContent = '';
+        scrollThreadToBottom(root);
+        return true;
+      }
+
+      if (action === 'chatbot-type-question') {
+        root.classList.add('is-chatbot-awaiting-question');
+        root.classList.remove('is-chatbot-loading', 'is-chatbot-answered');
+        const composer = $('[data-chatbot-composer-text]', root);
+        return typeTextInto(composer, step.text, token, step.typeDelay || 10);
+      }
+
+      if (action === 'chatbot-submit-question') {
+        const composer = $('[data-chatbot-composer-text]', root);
+        const question = $('[data-chatbot-question-text]', root);
+        const text = String(step.text || composer?.textContent || '').trim();
+        if (question) question.textContent = text;
+        if (composer) {
+          composer.textContent = '';
+          composer.classList.remove('is-typing');
+        }
+        root.classList.remove('is-chatbot-awaiting-question', 'is-chatbot-answered');
+        root.classList.add('is-chatbot-loading');
+        scrollThreadToBottom(root);
+        return true;
+      }
+
+      if (action === 'chatbot-reveal-answer') {
+        root.classList.remove('is-chatbot-awaiting-question', 'is-chatbot-loading');
+        root.classList.add('is-chatbot-answered');
+        scrollThreadToBottom(root);
+        return true;
+      }
+
+      if (action === 'approval-open-modal') {
+        root.classList.add('is-approval-modal-open');
+        root.classList.remove('is-approval-loading', 'is-approval-result-ready');
+        $$('[data-approval-field]', root).forEach((field) => {
+          field.value = '';
+          field.classList.remove('is-typing');
+        });
+        return true;
+      }
+
+      if (action === 'approval-fill-modal') {
+        root.classList.add('is-approval-modal-open');
+        root.classList.remove('is-approval-loading', 'is-approval-result-ready');
+        const fields = step.fields || {};
+        for (const [key, value] of Object.entries(fields)) {
+          const field = $(`[data-approval-field="${key}"]`, root);
+          if (!(await typeTextInto(field, value, token, step.typeDelay || 24))) return false;
+        }
+        return true;
+      }
+
+      if (action === 'approval-start-loading') {
+        root.classList.add('is-approval-modal-open', 'is-approval-loading');
+        root.classList.remove('is-approval-result-ready');
+        return true;
+      }
+
+      if (action === 'approval-show-results') {
+        root.classList.remove('is-approval-modal-open', 'is-approval-loading');
+        root.classList.add('is-approval-result-ready');
+        return true;
+      }
+
+      return true;
+    }
+
+    function updateScenarioStep(message) {
+      setText('#scenarioStep', message);
+    }
+
+    function showScenarioCursor(visible) {
+      const cursor = $('#scenarioCursor');
+      cursor.classList.toggle('is-visible', visible);
+      cursor.classList.remove('is-clicking');
+    }
+
+    function moveScenarioCursorTo(target) {
+      const cursor = $('#scenarioCursor');
+      const stageRect = $('#scenarioStage').getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const x = targetRect.left - stageRect.left + targetRect.width / 2;
+      const y = targetRect.top - stageRect.top + targetRect.height / 2;
+      cursor.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
+      showScenarioCursor(true);
+    }
+
+    function scaleEmbeddedScreens(scope = document) {
+      $$('.screen-body > .az-screen .az-stage', scope).forEach((stage) => {
+        const phone = $('.az-phone', stage);
+        if (!phone) return;
+
+        phone.style.setProperty('--prototype-scale', '1');
+
+        const stageRect = stage.getBoundingClientRect();
+        if (stageRect.width < 1 || stageRect.height < 1) {
+          phone.style.removeProperty('--prototype-scale');
+          return;
+        }
+
+        const stageStyle = window.getComputedStyle(stage);
+        const paddingX = parseFloat(stageStyle.paddingLeft || 0) + parseFloat(stageStyle.paddingRight || 0);
+        const paddingY = parseFloat(stageStyle.paddingTop || 0) + parseFloat(stageStyle.paddingBottom || 0);
+        const availableWidth = Math.max(1, stageRect.width - paddingX);
+        const availableHeight = Math.max(1, stageRect.height - paddingY);
+        const phoneWidth = phone.offsetWidth || 390;
+        const phoneHeight = phone.offsetHeight || 844;
+        const nextScale = Math.min(1, availableWidth / phoneWidth, availableHeight / phoneHeight);
+
+        phone.style.setProperty('--prototype-scale', String(Math.max(0.1, nextScale)));
+      });
+    }
+
+    function scrollScenarioTargetIntoScreen(target) {
+      const scroller = target.closest('.az-scroll');
+      if (!scroller) return;
+
+      const scrollerRect = scroller.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const phone = target.closest('.az-phone');
+      const scale = phone ? parseFloat(window.getComputedStyle(phone).getPropertyValue('--prototype-scale')) || 1 : 1;
+      const nextTop = scroller.scrollTop
+        + ((targetRect.top
+          - scrollerRect.top
+          - ((scrollerRect.height - targetRect.height) / 2)) / scale);
+
+      scroller.scrollTo({
+        top: Math.max(0, nextTop),
+        behavior: 'smooth'
+      });
+    }
+
+    function getScenarioTarget(targetName) {
+      return $$('[data-scenario-target]', $('#scenarioViewport'))
+        .find((element) => element.dataset.scenarioTarget === targetName);
+    }
+
+    function clearScenarioHighlights() {
+      $$('.is-scenario-highlight', $('#scenarioViewport')).forEach((element) => {
+        element.classList.remove('is-scenario-highlight');
+      });
+    }
+
+    function scenarioSleep(ms, token) {
+      return new Promise((resolve) => {
+        window.setTimeout(() => resolve(token === state.scenarioRunToken), ms);
+      });
+    }
+
+    async function runScenario(id) {
+      setMode('flow');
+      selectScenario(id);
+
+      const scenario = getScenarioById(id);
+      const steps = scenario?.steps || [];
+      if (steps.length === 0) return;
+
+      const token = ++state.scenarioRunToken;
+      setText('#scenarioStatus', '실행 중');
+
+      for (let index = 0; index < steps.length; index += 1) {
+        if (token !== state.scenarioRunToken) return;
+
+        const step = steps[index];
+        const screen = getScreenById(step.screenId || state.scenarioScreenId);
+        if (!screen) {
+          updateScenarioStep(`${index + 1}/${steps.length} · 화면을 찾을 수 없습니다: ${step.screenId || state.scenarioScreenId}`);
+          if (!(await scenarioSleep(900, token))) return;
+          continue;
+        }
+        if (index === 0 || state.scenarioScreenId !== screen.id) {
+          renderScenarioScreen(screen);
+        }
+        clearScenarioHighlights();
+        updateScenarioStep(`${index + 1}/${steps.length} · ${step.label || screen.title}`);
+
+        if (!(await scenarioSleep(step.delayBefore || 520, token))) return;
+
+        if (!(await applyScenarioAction(step.actionBefore || step.action, step, token))) return;
+
+        if (step.target) {
+          const target = getScenarioTarget(step.target);
+          if (!target) {
+            updateScenarioStep(`${index + 1}/${steps.length} · 대상 요소를 찾을 수 없습니다: ${step.target}`);
+            if (!(await scenarioSleep(900, token))) return;
+            continue;
+          }
+
+          scrollScenarioTargetIntoScreen(target);
+          if (!(await scenarioSleep(520, token))) return;
+
+          target.classList.add('is-scenario-highlight');
+          moveScenarioCursorTo(target);
+          if (!(await scenarioSleep(step.moveDuration || 720, token))) return;
+
+          $('#scenarioCursor').classList.add('is-clicking');
+          showToast(step.toast || target.dataset.toast || step.label || '클릭 동작');
+          if (!(await scenarioSleep(step.clickDuration || 520, token))) return;
+          $('#scenarioCursor').classList.remove('is-clicking');
+
+          if (!(await applyScenarioAction(step.actionAfter, step, token))) return;
+        }
+
+        if (!(await scenarioSleep(step.delayAfter || 560, token))) return;
+      }
+
+      clearScenarioHighlights();
+      showScenarioCursor(false);
+      setText('#scenarioStatus', '완료');
+      updateScenarioStep(`${scenario.title} 재생이 완료되었습니다.`);
+    }
+
+    initProject();
+    initModes();
+    initScreens();
+    initScenarios();
+    window.addEventListener('resize', () => {
+      scaleEmbeddedScreens($('#screenCanvas'));
+      scaleEmbeddedScreens($('#scenarioViewport'));
+    });
+  </script>
+</body>
+</html>
